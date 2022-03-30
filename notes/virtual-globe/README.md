@@ -36,17 +36,17 @@ $$
 
 直角坐标：$(x_s,\space y_s,\space z_s)$ 表示球面点位的坐标，是点 $(x,\space y,\space z)$ 在球面的投影
 
-经纬度与直角坐标的关系可以表示为：
+~~经纬度与直角坐标的关系可以表示为：~~
 
 $$
 \tan{\lambda} = \frac{y_s}{x_s}
 $$
 
 $$
-\sin{\phi} = \frac{z_s}{\Vert \vec{n}_s \Vert}
+\sin{\phi} = \frac{z_n}{\Vert \vec{n}_s \Vert}
 $$
 
-球面单位法向量可以表示为：
+~~球面单位法向量可以表示为：~~
 
 $$
 \hat{n}_s = (\cos{\lambda}\cos{\phi},\space \sin{\lambda}\cos{\phi},\space \sin{\phi})
