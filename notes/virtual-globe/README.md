@@ -12,7 +12,7 @@ $$
 \frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} = 1
 $$
 
-球面法向量：
+球面单位法向量：
 
 $$
 m = (\frac{x}{a^2}, \frac{y}{b^2}, \frac{z}{c^2}) \\
@@ -24,7 +24,7 @@ $$
 
 # WGS84 坐标系
 
-- 笛卡尔坐标系，单位为米（$m$）
+- 直角坐标系，单位为米（$m$）
 - 地球为扁球体，原点为地球质心
 - $x$ 轴指向地理坐标 $(0\degree, 0\degree)$
 - $y$ 轴指向地理坐标 $(90\degree, 0\degree)$
@@ -37,7 +37,7 @@ $$
 - 地理坐标：$(\lambda, \phi, h)$ 表示 $(longitude, latitude, height)$
 - 笛卡尔坐标：$(x, y, z)$
 
-## 地理坐标转换为笛卡尔坐标
+## 地理坐标转换为直角坐标
 
 首先根据 $(\lambda, \phi)$ 计算球面坐标 $(x_s, y_s, z_s)$：
 
@@ -57,21 +57,14 @@ $$
 \hat{n} = \gamma\vec{n}
 $$
 
-从上面的方程可以解出 $x_s$、$y_s$、$z_s$：
+从上面的方程可得：
 
 $$
-x_s = \frac{a^2\hat{n}_x}{\gamma}
+(x_s, y_s, z_s)
+= (\frac{a^2\hat{n}_x}{\gamma}, \frac{b^2\hat{n}_y}{\gamma}, \frac{c^2\hat{n}_z}{\gamma})
 $$
 
-$$
-y_s = \frac{b^2\hat{n}_y}{\gamma}
-$$
-
-$$
-z_s = \frac{c^2\hat{n}_z}{\gamma}
-$$
-
-带入椭球方程解出 $\gamma$：
+带入椭球方程可得：
 
 $$
 \gamma = \sqrt{a^2\hat{n}_x^2 + b^2\hat{n}_y^2 + c^2\hat{n}_z^2}
@@ -83,7 +76,7 @@ $$
 \vec{h} = h\hat{n}_s
 $$
 
-则由地理坐标经过转换得到的笛卡尔坐标为：
+可得：
 
 $$
 \begin{bmatrix}
