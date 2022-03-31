@@ -17,7 +17,7 @@ $$
 球面单位法向量：
 
 $$
-\hat{n}_s = \frac{\vec{n}_s}{\Vert \vec{n}_s \Vert}
+\hat{n}_s = \frac{\vec{n}_s}{\Vert\vec{n}_s\Vert}
 $$
 
 ## WGS84 坐标系
@@ -93,7 +93,7 @@ $$
 \lambda = \arctan(\frac{y_n}{x_n})
 ~\\
 ~\\
-\phi = \arcsin{\frac{z_n}{\Vert \vec{n}_s \Vert}}
+\phi = \arcsin{\frac{z_n}{\Vert\vec{n}_s\Vert}}
 $$
 
 ### 沿球心法向量方向缩放到球面
@@ -150,4 +150,10 @@ $$
 = 0
 $$
 
-在这个方程中只有一个未知数 $\alpha$。
+在这个方程中 $\alpha$ 是唯一的未知数。
+
+假设 $(x_c,\space y_c,\space, z_c)$ 与 $(x_s,\space y_s,\space z_s)$ 重合，则可以计算 $\alpha$ 的初始值：
+
+$$
+\alpha_0 = (1 - \beta)\frac{\Vert\vec{r}\Vert}{\Vert\vec{n}_s\Vert}
+$$
