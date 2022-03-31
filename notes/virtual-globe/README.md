@@ -30,27 +30,21 @@ $$
 - 赤道为圆形，半径 $6378137m$
 - 球心到极点的距离为 $6356752.3142m$
 
-## 坐标表示
+## 地理坐标
 
-地理坐标：$(\lambda,\space \phi,\space h)$ 表示 $(longitude,\space latitude,\space height)$
+地理坐标 $(\lambda,\space \phi,\space h)$ 用经度、纬度、高程来表示一个点的位置。
 
-直角坐标：$(x_s,\space y_s,\space z_s)$ 表示球面点位的坐标，是点 $(x,\space y,\space z)$ 在球面的投影
+对于一个 $(a,\space b,\space c)$ 表示的椭球，使用它的球面法向量来定义地理坐标的经纬度。法向量在 $xy$ 平面的投影与 $x$ 轴的夹角表示经度；法向量与 $xy$ 平面的夹角表示纬度。对于 WGS84 椭球，由于 $a=b$，所以这里使用球面法向量来定义经度与通过子午面夹角来定义经度实际上是等价的。
 
-~~经纬度与直角坐标的关系可以表示为：~~
-
-$$
-\tan{\lambda} = \frac{y_s}{x_s}
-$$
-
-$$
-\sin{\phi} = \frac{z_n}{\Vert \vec{n}_s \Vert}
-$$
-
-~~球面单位法向量可以表示为：~~
+球面单位法向量可以用经纬度表示：
 
 $$
 \hat{n}_s = (\cos{\lambda}\cos{\phi},\space \sin{\lambda}\cos{\phi},\space \sin{\phi})
 $$
+
+## 直角坐标
+
+对于空间中的任意一点 $P\space(x,\space y,\space z)$，球面上某一点 $(x_s,\space y_s,\space z_s)$ 与它的连线垂直于球面，称该方向的向量为球面法向量 $\vec{n}_s$；$OP$ 连线与球面的交点表示为为 $(x_c,\space y_c,\space z_c)$，称该方向的向量为球心法向量 $\hat{n}_c$。
 
 # 坐标转换
 
@@ -60,7 +54,7 @@ $$
 
 $$
 \hat{n}_s
-= x_n\hat{i} + y_n\hat{j} + z_n\hat{k}
+= (x_n,\space y_n,\space z_n)
 = \gamma\vec{n}_s
 $$
 
@@ -71,7 +65,7 @@ $$
 = (\frac{a^2x_n}{\gamma},\space \frac{b^2y_n}{\gamma},\space \frac{c^2z_n}{\gamma})
 $$
 
-带入椭球方程可得：
+代入椭球方程可得：
 
 $$
 \gamma = \sqrt{a^2x_n^2 + b^2y_n^2 + c^2z_n^2}
@@ -90,3 +84,70 @@ $$
 =
 (x_s,\space y_s,\space z_s) + \vec{h}
 $$
+
+## 直角坐标转地理坐标
+
+### 根据球面坐标计算经纬度
+
+$$
+\lambda = \arctan(\frac{y_n}{x_n})
+~\\
+~\\
+\phi = \arcsin{\frac{z_n}{\Vert \vec{n}_s \Vert}}
+$$
+
+### 沿球心法向量方向缩放到球面
+
+设：
+
+$$
+(x_c,\space y_c,\space z_c) = \beta(x,\space y,\space z)
+$$
+
+代入球面方程可得：
+
+$$
+\beta = \frac{1}{\sqrt{\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2}}}
+$$
+
+### 根据球面法向量用迭代法计算球面坐标
+
+设：
+
+$$
+\vec{r} = (x,\space y,\space z)
+~\\
+~\\
+\vec{r}_s = (x_s,\space y_s,\space z_s)
+~\\
+~\\
+\vec{h} = \alpha\vec{n}_s
+~\\
+~\\
+
+\vec{r} = \vec{r}_s + \vec{h}
+$$
+
+可以解得：
+
+$$
+x_s = \frac{x}{1 + \frac{\alpha}{a^2}}
+~\\
+~\\
+y_s = \frac{y}{1 + \frac{\alpha}{b^2}}
+~\\
+~\\
+z_s = \frac{z}{1 + \frac{\alpha}{c^2}}
+$$
+
+代入球面方程得：
+
+$$
+\frac{x^2}{a^2(1 + \frac{\alpha}{a^2})^2}
++ \frac{y^2}{b^2(1 + \frac{\alpha}{b^2})^2}
++ \frac{z^2}{c^2(1 + \frac{\alpha}{c^2})^2}
+- 1
+= 0
+$$
+
+在这个方程中只有一个未知数 $\alpha$。
