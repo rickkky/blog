@@ -124,7 +124,11 @@ $$
 \vec{h} = \alpha\vec{n}_s
 ~\\
 ~\\
+$$
 
+有：
+
+$$
 \vec{r} = \vec{r}_s + \vec{h}
 $$
 
@@ -157,3 +161,40 @@ $$
 $$
 \alpha_0 = (1 - \beta)\frac{\Vert\vec{r}\Vert}{\Vert\vec{n}_s\Vert}
 $$
+
+设：
+
+$$
+S
+=
+\frac{x^2}{a^2(1 + \frac{\alpha}{a^2})^2}
++ \frac{y^2}{b^2(1 + \frac{\alpha}{b^2})^2}
++ \frac{z^2}{c^2(1 + \frac{\alpha}{c^2})^2}
+- 1
+$$
+
+则有：
+
+$$
+S'
+=
+-2
+\Big[
+\frac{x^2}{a^4(1 + \frac{\alpha}{a^2})^3}
++ \frac{y^2}{b^4(1 + \frac{\alpha}{b^2})^3}
++ \frac{z^2}{c^4(1 + \frac{\alpha}{c^2})^3}
+\Big]
+$$
+
+可得：
+
+$$
+\Delta\alpha = \frac{S(\alpha_n)}{S'(\alpha_n)}
+~\\
+~\\
+\alpha_{n+1} = \alpha_n - \Delta\alpha
+$$
+
+给定一个足够接近于 0 的阈值 $\epsilon$，当 $|S| < \epsilon$ 时，迭代结束。
+
+对于地球扁球体，这种方法收敛速度快，并且不需要任何三角函数的计算。这种方法并不适用于非常靠近球心的点，因为可能有多个解（Don't know why），但是在实际应用中这种情况很少见。
