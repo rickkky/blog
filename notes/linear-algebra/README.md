@@ -52,7 +52,7 @@ $a\vec{v}+b\vec{w}$ 可以表示的所有向量的集合称为 $\vec{v}$ 与 $\v
 
 向量空间中任意一组线性无关的向量可以作为该空间的一组基向量。
 
-## 线性变换
+# 线性变换
 
 线性变换需要满足两个条件：原点保持不变；直线在变换前后仍为直线。
 
@@ -60,20 +60,19 @@ $a\vec{v}+b\vec{w}$ 可以表示的所有向量的集合称为 $\vec{v}$ 与 $\v
 
 $$
 \vec{v} = x\vec{i} + y\vec{j}
-$$
-
-$$
+~\\
+~\\
 T =
 \begin{bmatrix}
   T\vec{i} & T\vec{j}
 \end{bmatrix}
-$$
-
-$$
-T\vec{v} = xT\vec{i} + yT\vec{j}
-$$
-
-$$
+=
+\begin{bmatrix}
+  a & b \\
+  c & d
+\end{bmatrix}
+~\\
+~\\
 \begin{bmatrix}
   a & b \\
   c & d
