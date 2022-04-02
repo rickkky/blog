@@ -99,3 +99,33 @@ y
   cx + dy
 \end{bmatrix}
 $$
+
+## 矩阵乘法
+
+矩阵乘法表示两个线性变换的复合变换。
+
+$$
+\begin{bmatrix}
+  a & b \\
+  c & d
+\end{bmatrix}
+\begin{bmatrix}
+  e & f \\
+  g & h
+\end{bmatrix}
+=
+\begin{bmatrix}
+  ae + bg & af + bh \\
+  ce + dg & cf + dh
+\end{bmatrix}
+$$
+
+性质：
+
+$$
+M_{1}M_{2}\not=M_{2}M_{1}
+~\\
+~\\
+(M_{1}M_{2})M_{3}=M_{1}(M_{2}M_{3})
+$$。
+$$
