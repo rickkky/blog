@@ -9,20 +9,11 @@
 $\vec{v}+\vec{w}$ 表示从原点先沿着 $\vec{v}$ 移动，然后沿着 $\vec{w}$ 移动得到的向量。
 
 $$
-\begin{bmatrix}
-  x_1 \\
-  y_1
-\end{bmatrix}
+\begin{bmatrix} x_1 \\ y_1 \end{bmatrix}
 +
-\begin{bmatrix}
-  x_2 \\
-  y_2
-\end{bmatrix}
+\begin{bmatrix} x_2 \\ y_2 \end{bmatrix}
 =
-\begin{bmatrix}
-  x_1 + x_2 \\
-  y_1 + y_2
-\end{bmatrix}
+\begin{bmatrix} x_1 + x_2 \\ y_1 + y_2 \end{bmatrix}
 $$
 
 ## 数乘
@@ -30,16 +21,9 @@ $$
 $C\vec{v}$ 表示沿 $\vec{v}$ 的方向（若 $C$ 为负数则为反方向）对其缩放 $C$ 倍得到的向量。
 
 $$
-C
-\begin{bmatrix}
-  x \\
-  y
-\end{bmatrix}
+C\begin{bmatrix} x \\ y \end{bmatrix}
 =
-\begin{bmatrix}
-  C x \\
-  C y
-\end{bmatrix}
+\begin{bmatrix} C x \\ C y \end{bmatrix}
 $$
 
 ## 线性组合
@@ -64,42 +48,20 @@ $$
 \vec{v} = x\vec{i} + y\vec{j}
 ~\\
 ~\\
-T =
-\begin{bmatrix}
-  T\vec{i} & T\vec{j}
-\end{bmatrix}
+T
 =
-\begin{bmatrix}
-  a & b \\
-  c & d
-\end{bmatrix}
+\begin{bmatrix} T\vec{i} & T\vec{j} \end{bmatrix}
+=
+\begin{bmatrix} a & b \\ c & d \end{bmatrix}
 ~\\
 ~\\
-\begin{bmatrix}
-  a & b \\
-  c & d
-\end{bmatrix}
-\begin{bmatrix}
-  x \\
-  y
-\end{bmatrix}
+\begin{bmatrix} a & b \\ c & d \end{bmatrix}
+\begin{bmatrix} x \\ y \end{bmatrix}
 =
-x
-\begin{bmatrix}
-  a \\
-  c
-\end{bmatrix}
-+
-y
-\begin{bmatrix}
-  b \\
-  d
-\end{bmatrix}
+x\begin{bmatrix} a \\ c \end{bmatrix}
++ y\begin{bmatrix} b \\ d \end{bmatrix}
 =
-\begin{bmatrix}
-  ax + by \\
-  cx + dy
-\end{bmatrix}
+\begin{bmatrix} ax + by \\ cx + dy \end{bmatrix}
 $$
 
 ## 矩阵乘法
@@ -107,19 +69,10 @@ $$
 矩阵乘法表示两个线性变换的复合变换。
 
 $$
-\begin{bmatrix}
-  a & b \\
-  c & d
-\end{bmatrix}
-\begin{bmatrix}
-  e & f \\
-  g & h
-\end{bmatrix}
+\begin{bmatrix} a & b \\ c & d \end{bmatrix}
+\begin{bmatrix} e & f \\ g & h \end{bmatrix}
 =
-\begin{bmatrix}
-  ae + bg & af + bh \\
-  ce + dg & cf + dh
-\end{bmatrix}
+\begin{bmatrix} ae + bg & af + bh \\ ce + dg & cf + dh \end{bmatrix}
 $$
 
 性质：
@@ -136,41 +89,16 @@ $$
 矩阵的行列式表示经过线性变换以后空间定量以及空间定向的变化。行列式的绝对值大小表示空间定量的缩放倍数，空间定量在二维空间中表示面积，在三维空间中表示体积。行列式的正负号表示空间定向的是否发生变化，空间定向在二维空间中表示 $x$ 轴与 $y$ 轴的左右关系，在三维空间中表示坐标系的手性。
 
 $$
-\det\Big(
-\begin{bmatrix}
-  a & b \\
-  c & d
-\end{bmatrix}
-\Big)
-= ad - bc
-~\\
-~\\
-\det\Bigg(
-\begin{bmatrix}
-  a & b & c \\
-  d & e & f \\
-  g & h & i
-\end{bmatrix}
-\Bigg)
+\det\Big(\begin{bmatrix} a & b \\ c & d \end{bmatrix}\Big)
 =
-a\det\Big(
-\begin{bmatrix}
-  e & f \\
-  h & i
-\end{bmatrix}
-\Big)
-- b\det\Big(
-\begin{bmatrix}
-  d & f \\
-  g & i
-\end{bmatrix}
-\Big)
-+ c\det\Big(
-\begin{bmatrix}
-  d & e \\
-  g & h
-\end{bmatrix}
-\Big)
+ad - bc
+~\\
+~\\
+\det\Bigg(\begin{bmatrix} a & b & c \\ d & e & f \\ g & h & i \end{bmatrix}\Bigg)
+=
+a\det\Big(\begin{bmatrix} e & f \\ h & i \end{bmatrix}\Big)
+- b\det\Big(\begin{bmatrix} d & f \\ g & i \end{bmatrix}\Big)
++ c\det\Big(\begin{bmatrix} d & e \\ g & h \end{bmatrix}\Big)
 $$
 
 性质：
