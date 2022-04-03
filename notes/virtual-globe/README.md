@@ -115,10 +115,10 @@ $$
 设：
 
 $$
-\vec{r} = (x,\space y,\space z)
+\vec{p} = (x,\space y,\space z)
 ~\\
 ~\\
-\vec{r}_s = (x_s,\space y_s,\space z_s)
+\vec{p}_s = (x_s,\space y_s,\space z_s)
 ~\\
 ~\\
 \vec{h} = \alpha\vec{n}_s
@@ -129,7 +129,7 @@ $$
 有：
 
 $$
-\vec{r} = \vec{r}_s + \vec{h}
+\vec{p} = \vec{p}_s + \vec{h}
 $$
 
 可以解得：
