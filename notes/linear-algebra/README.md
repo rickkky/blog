@@ -52,7 +52,9 @@ $a\vec{v}+b\vec{w}$ 可以表示的所有向量的集合称为 $\vec{v}$ 与 $\v
 
 向量空间中任意一组线性无关的向量可以作为该空间的一组基向量。
 
-# 线性变换
+# 矩阵
+
+## 线性变换
 
 线性变换需要满足两个条件：原点保持不变；直线在变换前后仍为直线。
 
@@ -127,5 +129,52 @@ M_{1}M_{2}\not=M_{2}M_{1}
 ~\\
 ~\\
 (M_{1}M_{2})M_{3}=M_{1}(M_{2}M_{3})
-$$。
+$$
+
+## 行列式
+
+矩阵的行列式表示经过线性变换以后空间定量以及空间定向的变化。行列式的绝对值大小表示空间定量的缩放倍数，空间定量在二维空间中表示面积，在三维空间中表示体积。行列式的正负号表示空间定向的是否发生变化，空间定向在二维空间中表示 $x$ 轴与 $y$ 轴的左右关系，在三维空间中表示坐标系的手性。
+
+$$
+\det\Big(
+\begin{bmatrix}
+  a & b \\
+  c & d
+\end{bmatrix}
+\Big)
+= ad - bc
+~\\
+~\\
+\det\Bigg(
+\begin{bmatrix}
+  a & b & c \\
+  d & e & f \\
+  g & h & i
+\end{bmatrix}
+\Bigg)
+=
+a\det\Big(
+\begin{bmatrix}
+  e & f \\
+  h & i
+\end{bmatrix}
+\Big)
+- b\det\Big(
+\begin{bmatrix}
+  d & f \\
+  g & i
+\end{bmatrix}
+\Big)
++ c\det\Big(
+\begin{bmatrix}
+  d & e \\
+  g & h
+\end{bmatrix}
+\Big)
+$$
+
+性质：
+
+$$
+\det(M_{1}M_{2}) = \det(M_1)\det(M_2)
 $$
