@@ -1,0 +1,1 @@
+- Understanding dot product
