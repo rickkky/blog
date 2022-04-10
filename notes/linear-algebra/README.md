@@ -116,7 +116,8 @@ $$
 单位矩阵表示一个恒等变换。
 
 $$
-I_n =
+I_n
+=
 \begin{bmatrix}
   1 & 0 & \cdots & 0 \\
   0 & 1 & \cdots & 0 \\
@@ -157,3 +158,13 @@ $$
 - 当矩阵的秩为 0 时，它的零空间为原点。
 - 对于二维矩阵，当矩阵的秩为 1 时，它的零空间为一条直线。
 - 对于三维矩阵，当矩阵的秩为 2 时，它的零空间为一条直线；当矩阵的秩为 1 时，它的零空间为一个平面。
+
+# 点积
+
+$$
+\begin{bmatrix} x_1 \\ y_1 \end{bmatrix} \cdot \begin{bmatrix} x_2 \\ y_2\end{bmatrix}
+= x_1x_2 + y_1y_2
+~\\
+~\\
+\vec{v} \cdot \vec{w} = \Vert{\vec{v}}\Vert \Vert{\vec{w}}\Vert \cos{\theta}
+$$
