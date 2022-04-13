@@ -1,1 +1,2 @@
 - Understanding dot product
+- Understanding cross product
