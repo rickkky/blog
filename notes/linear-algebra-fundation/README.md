@@ -168,3 +168,23 @@ $$
 ~\\
 \vec{v} \cdot \vec{w} = \Vert{\vec{v}}\Vert \Vert{\vec{w}}\Vert \cos{\theta}
 $$
+
+# 叉积
+
+$$
+\vec{v} \times \vec{w}
+=
+\det\Bigg(
+  \begin{bmatrix}
+    \hat{i} & v_x & w_x \\
+    \hat{j} & v_y & w_y \\
+    \hat{k} & v_z & w_z
+  \end{bmatrix}
+\Bigg)
+=
+\begin{bmatrix}
+  v_{y}w_{z} - w_{y}v_{z} \\
+  v_{z}w_{x} - w_{z}v_{x} \\
+  v_{x}w_{y} - w_{x}v_{y}
+\end{bmatrix}
+$$
