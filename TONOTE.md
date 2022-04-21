@@ -1,2 +1,3 @@
 - Understanding dot product
 - Understanding cross product
+- JS deep clone
