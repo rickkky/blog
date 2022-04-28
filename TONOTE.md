@@ -1,3 +1,6 @@
 - Understanding dot product
 - Understanding cross product
 - JS deep clone
+- JS private fields 
+    - closure
+    - weak map
