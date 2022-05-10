@@ -4,3 +4,6 @@
 - JS private fields 
     - closure
     - weak map
+- Drawing triangle
+    - line sweeping
+    - barycentric coordinate
