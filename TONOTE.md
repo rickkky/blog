@@ -6,4 +6,5 @@
     - weak map
 - Drawing triangle
     - line sweeping
+    - dot product
     - barycentric coordinate
