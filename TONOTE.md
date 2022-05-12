@@ -4,7 +4,8 @@
 - JS private fields 
     - closure
     - weak map
-- Drawing triangle
+- Triangle rasterization
     - line sweeping
-    - dot product
+    - cross product
     - barycentric coordinate
+- Z-Buffering
