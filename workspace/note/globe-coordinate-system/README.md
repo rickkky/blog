@@ -44,7 +44,7 @@ $$
 
 ## 直角坐标
 
-对于空间中的任意一点 $P\space(x,\space y,\space z)$，球面上某一点 $(x_s,\space y_s,\space z_s)$ 与它的连线垂直于球面，称该方向的向量为球面法向量 $\vec{n}_s$；$OP$ 连线与球面的交点表示为为 $(x_c,\space y_c,\space z_c)$，称该方向的向量为球心法向量 $\hat{n}_c$。
+对于空间中的任意一点 $P\space(x,\space y,\space z)$，球面上某一点 $(x_s,\space y_s,\space z_s)$ 与它的连线垂直于球面，称该方向的向量为球面法向量 $\vec{n}_s$；$OP$ 连线与球面的交点表示为为 $(x_c,\space y_c,\space z_c)$，称该方向的向量为球心法向量 $\vec{n}_c$。
 
 # 坐标转换
 
@@ -87,7 +87,7 @@ $$
 
 ## 直角坐标转地理坐标
 
-### 根据球面坐标计算经纬度
+### 根据球面法向量计算经纬度
 
 $$
 \lambda = \arctan(\frac{y_n}{x_n})
