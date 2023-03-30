@@ -4,25 +4,25 @@
 
 椭球表面方程：
 
-$$
+```math
 \frac{x_s^2}{a^2} + \frac{y_s^2}{b^2} + \frac{z_s^2}{c^2} = 1
-$$
+```
 
 球面法向量：
 
-$$
+```math
 \vec{n}_s = (\frac{x_s}{a^2},\space \frac{y_s}{b^2},\space \frac{z_s}{c^2}) \\
-$$
+```
 
 球面单位法向量：
 
-$$
+```math
 \hat{n}_s = \frac{\vec{n}_s}{\Vert\vec{n}_s\Vert}
-$$
+```
 
 ## WGS84 坐标系
 
-- 直角坐标系，单位为米（$m$）
+- 直角坐标系，单位为米（ $m$ ）
 - 地球为扁球体，原点为地球质心
 - $x$ 轴指向地理坐标 $(0\degree,\space 0\degree)$
 - $y$ 轴指向地理坐标 $(90\degree,\space 0\degree)$
@@ -38,9 +38,9 @@ $$
 
 球面单位法向量可以用经纬度表示：
 
-$$
+```math
 \hat{n}_s = (\cos{\lambda}\cos{\phi},\space \sin{\lambda}\cos{\phi},\space \sin{\phi})
-$$
+```
 
 ## 直角坐标
 
@@ -52,130 +52,131 @@ $$
 
 设：
 
-$$
+```math
 \hat{n}_s
 = (x_n,\space y_n,\space z_n)
 = \gamma\vec{n}_s
-$$
+```
 
 可得：
 
-$$
+```math
 (x_s,\space y_s,\space z_s)
 = (\frac{a^2x_n}{\gamma},\space \frac{b^2y_n}{\gamma},\space \frac{c^2z_n}{\gamma})
-$$
+```
 
 代入椭球方程可得：
 
-$$
+```math
 \gamma = \sqrt{a^2x_n^2 + b^2y_n^2 + c^2z_n^2}
-$$
+```
 
 设：
 
-$$
+```math
 \vec{h} = h\hat{n}_s
-$$
+```
 
 可得：
 
-$$
+```math
 (x,\space y,\space z)
 =
 (x_s,\space y_s,\space z_s) + \vec{h}
-$$
+```
 
 ## 直角坐标转地理坐标
 
 ### 根据球面法向量计算经纬度
 
-$$
+```math
 \lambda = \arctan(\frac{y_n}{x_n})
-~\\
-~\\
+```
+
+```math
 \phi = \arcsin{\frac{z_n}{\Vert\vec{n}_s\Vert}}
-$$
+```
 
 ### 沿球心法向量方向缩放到球面
 
 设：
 
-$$
+```math
 (x_c,\space y_c,\space z_c) = \beta(x,\space y,\space z)
-$$
+```
 
 代入球面方程可得：
 
-$$
+```math
 \beta = \frac{1}{\sqrt{\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2}}}
-$$
+```
 
 ### 根据球面法向量用迭代法计算球面坐标
 
 设：
 
-$$
+```math
 \vec{p} = (x,\space y,\space z)
-~\\
-~\\
+```
+
+```math
 \vec{p}_s = (x_s,\space y_s,\space z_s)
-~\\
-~\\
+```
+
+```math
 \vec{h} = \alpha\vec{n}_s
-~\\
-~\\
-$$
+```
 
 有：
 
-$$
+```math
 \vec{p} = \vec{p}_s + \vec{h}
-$$
+```
 
 点位高程为：
 
-$$
+```math
 h = \frac{\vec{h}⋅\vec{p}}{\vert\vec{h}⋅\vec{p}\vert}\Vert\vec{h}\Vert
-$$
+```
 
 点位在球面的投影坐标为：
 
-$$
+```math
 (x_s,\space y_s,\space z_s) = (\frac{x}{1 + \frac{\alpha}{a^2}},\space \frac{y}{1 + \frac{\alpha}{b^2}},\space \frac{z}{1 + \frac{\alpha}{c^2}})
-$$
+```
 
-要求得点位的地理坐标，$\alpha$ 是唯一得未知数。
+要求得点位的地理坐标， $\alpha$ 是唯一得未知数。
 
 代入球面方程得：
 
-$$
+```math
 \frac{x^2}{a^2(1 + \frac{\alpha}{a^2})^2}
 + \frac{y^2}{b^2(1 + \frac{\alpha}{b^2})^2}
 + \frac{z^2}{c^2(1 + \frac{\alpha}{c^2})^2}
 - 1
 = 0
-$$
+```
 
 假设 $(x_c,\space y_c,\space, z_c)$ 与 $(x_s,\space y_s,\space z_s)$ 重合，则可以计算 $\alpha$ 的初始值：
 
-$$
+```math
 \alpha_0 = (1 - \beta)\frac{\Vert\vec{r}\Vert}{\Vert\vec{n}_s\Vert}
-$$
+```
 
 设：
 
-$$
+```math
 S
 =
 \frac{x^2}{a^2(1 + \frac{\alpha}{a^2})^2}
 + \frac{y^2}{b^2(1 + \frac{\alpha}{b^2})^2}
 + \frac{z^2}{c^2(1 + \frac{\alpha}{c^2})^2}
 - 1
-$$
+```
 
 则有：
 
-$$
+```math
 S'
 =
 -2
@@ -184,16 +185,17 @@ S'
 + \frac{y^2}{b^4(1 + \frac{\alpha}{b^2})^3}
 + \frac{z^2}{c^4(1 + \frac{\alpha}{c^2})^3}
 \Big]
-$$
+```
 
 可得：
 
-$$
+```math
 \Delta\alpha = \frac{S(\alpha_n)}{S'(\alpha_n)}
-~\\
-~\\
+```
+
+```math
 \alpha_{n+1} = \alpha_n - \Delta\alpha
-$$
+```
 
 给定一个足够接近于 0 的阈值 $\epsilon$，当 $|S| < \epsilon$ 时，迭代结束。
 
