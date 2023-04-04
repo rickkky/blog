@@ -9,3 +9,5 @@
     - cross product
     - barycentric coordinate
 - Z-Buffering
+- Handedness of coordinate system
+  - x - 拇指；y - 食指；z - 中指
