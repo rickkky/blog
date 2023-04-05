@@ -1,13 +1,12 @@
 - Understanding dot product
 - Understanding cross product
 - JS deep clone
-- JS private fields 
-    - closure
-    - weak map
+- JS private fields
+  - closure
+  - weak map
 - Triangle rasterization
-    - line sweeping
-    - cross product
-    - barycentric coordinate
+  - line sweeping
+  - cross product
+  - barycentric coordinate
 - Z-Buffering
 - Handedness of coordinate system
-  - x - 拇指；y - 食指；z - 中指
