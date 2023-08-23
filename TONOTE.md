@@ -9,4 +9,4 @@
   - cross product
   - barycentric coordinate
 - Z-Buffering
-- Handedness of coordinate system
+- Matrix inverse
