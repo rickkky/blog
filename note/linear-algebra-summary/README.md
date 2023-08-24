@@ -90,30 +90,32 @@ M_{1}M_{2}\not=M_{2}M_{1}
 
 ## 行列式
 
-矩阵的行列式表示经过线性变换以后空间定量以及空间定向的变化。
+矩阵的行列式（determinant）表示经过线性变换以后空间定量以及空间定向的变化。
 
 - 行列式的绝对值大小表示空间定量的缩放倍数，空间定量在二维空间中表示面积，在三维空间中表示体积。
 - 行列式的正负号表示空间定向的是否发生变化，空间定向在二维空间中表示 $x$ 轴与 $y$ 轴的左右关系，在三维空间中表示坐标系的手性。
 - 行列式的值为 0 表示线性变换将空间压缩到了更低的维度。
 
+矩阵 $A$ 的行列式记为 $\det(A)$ 或 $|A|$。
+
 ```math
-\det\Big(\begin{bmatrix} a & b \\ c & d \end{bmatrix}\Big)
+\left| \begin{bmatrix} a & b \\ c & d \end{bmatrix} \right|
 =
 ad - bc
 ```
 
 ```math
-\det\Bigg(\begin{bmatrix} a & b & c \\ d & e & f \\ g & h & i \end{bmatrix}\Bigg)
+\left| \begin{bmatrix} a & b & c \\ d & e & f \\ g & h & i \end{bmatrix} \right|
 =
-a\det\Big(\begin{bmatrix} e & f \\ h & i \end{bmatrix}\Big)
-- b\det\Big(\begin{bmatrix} d & f \\ g & i \end{bmatrix}\Big)
-+ c\det\Big(\begin{bmatrix} d & e \\ g & h \end{bmatrix}\Big)
+a \left| \begin{bmatrix} e & f \\ h & i \end{bmatrix} \right|
+- b \left| \begin{bmatrix} d & f \\ g & i \end{bmatrix} \right|
++ c \left| \begin{bmatrix} d & e \\ g & h \end{bmatrix} \right|
 ```
 
 性质：
 
 ```math
-\det(M_{1}M_{2}) = \det(M_1)\det(M_2)
+|M_{1}M_{2}| = |M_1| |M_2|
 ```
 
 ## 向量方程
@@ -131,7 +133,7 @@ I_n
 \end{bmatrix}
 ```
 
-一个矩阵 $A$ 的逆矩阵 $A^{-1}$ 表示该矩阵所代表的线性变换的逆变换。仅当 $\det{A}\not=0$ 时，$A^{-1}$ 才存在。
+一个矩阵 $A$ 的逆矩阵 $A^{-1}$ 表示该矩阵所代表的线性变换的逆变换。仅当 $|A| \neq 0$ 时，$A^{-1}$ 才存在。
 
 ```math
 A^{-1}A = I
