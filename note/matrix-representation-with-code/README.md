@@ -1,4 +1,4 @@
-以三维矩阵为例：
+以行主序（row-major order）表示的三维矩阵为例：
 
 ```math
 \begin{bmatrix}
@@ -8,7 +8,7 @@
 \end{bmatrix}
 ```
 
-在代码中，通常以一维数组形式表示：
+在代码中，通常以列主序（colum-major order）的一维数组形式表示：
 
 ```
 [
