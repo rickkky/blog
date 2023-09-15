@@ -10,3 +10,5 @@
   - barycentric coordinate
 - Z-Buffering
 - Matrix inverse
+- Orthographic projection
+- Perspective projection
