@@ -9,3 +9,9 @@
 
 \end{bmatrix}
 ```
+
+# 推导过程
+
+正射投影的视场范围为一个长方体，假设我们看向 $z$ 轴负方向，
+
+1. [](https://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix/orthographic-projection-matrix.html)
