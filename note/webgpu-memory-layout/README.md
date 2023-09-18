@@ -53,6 +53,7 @@
 | `mat4x4<f32>` | mat4x4f |  64  |  16   |
 | `mat4x4<f16>` | mat4x4h |  32  |   8   |
 
-# 工具
+# 参考
 
 1. [WGSL Offset Computer](https://webgpufundamentals.org/webgpu/lessons/resources/wgsl-offset-computer.html)
+2. [WebGPU Memory Layout](https://webgpufundamentals.org/webgpu/lessons/webgpu-memory-layout.html)
