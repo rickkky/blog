@@ -71,14 +71,15 @@ y\begin{bmatrix} b \\ d \end{bmatrix}
 
 矩阵乘法表示两个线性变换的复合变换。
 
-```math
-\begin{bmatrix} a & b \\ c & d \end{bmatrix}
-\begin{bmatrix} e & f \\ g & h \end{bmatrix}
-=
-\begin{bmatrix} ae + bg & af + bh \\ ce + dg & cf + dh \end{bmatrix}
-```
+对于矩阵乘法 $M_1M_2$，可以视为对 $M_2$ 中的每一列向量应用 $M_1$ 变换。
 
-对于两个矩阵之间的乘法 $M_1M_2$
+```math
+M_{1}M_{2}
+=
+M_{1}\begin{bmatrix} v_1 & v_2 & \cdots & v_n \end{bmatrix}
+=
+\begin{bmatrix} M_{1}v_1 & M_{1}v_2 & \cdots & M_{1}v_n \end{bmatrix}
+```
 
 性质：
 
