@@ -11,3 +11,11 @@ G-J 消元法（Gauss-Jordan elimination）的核心思想是对增广矩阵 $[M
 G-J 消元法的步骤：
 
 1. 交换矩阵行使所有主元（pivot）都不为 0；
+
+---
+
+$n$ 阶矩阵 $A$ 的 $(i, j)$ 余子式记为 $M_{ij}$，表示将该矩阵的第 $i$ 行和第 $j$ 列移除以后得到的 $n-1$ 阶矩阵。
+
+代数余子式（cofactor）$C_{ij} = (-1)^{i+j}M_{ij}$。
+
+余子矩阵（cofactor matrix）$C = (C_{ij})$。
