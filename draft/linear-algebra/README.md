@@ -14,10 +14,27 @@ G-J 消元法的步骤：
 
 ---
 
-$C_{ij} = (-1)^{i+j}M_{ij}$
+$n$ 阶矩阵 $A$ 的 $(i, j)$ 余子式（minor）通常记为 $M_{ij}$，表示将该矩阵的第 $i$ 行和第 $j$ 列移除以后得到的 $n-1$ 阶矩阵。
 
-$n$ 阶矩阵 $A$ 的 $(i, j)$ 余子式记为 $M_{ij}$，表示将该矩阵的第 $i$ 行和第 $j$ 列移除以后得到的 $n-1$ 阶矩阵。
+代数余子式（cofactor）通常记为 $C_{ij}$，有 $C_{ij}=(-1)^{i+j}M_{ij}$ 。
 
-代数余子式（cofactor） $C_{ij} = (-1)^{i+j}M_{ij}$ 。
+余子矩阵（cofactor matrix）通常记为 $C$，有 $C=(C_{ij})_{n×n}$ 。
 
-余子矩阵（cofactor matrix） $C = (C_{ij})$ 。
+伴随矩阵（adjugate matrix）记为 $adj(A)$ 或 $A^*$，有 $A^*=C^T$ 。
+
+```math
+AA^*
+=
+\begin{bmatrix}
+a_{11} \cdots a_{1n} \\
+\vdots \ddots \vdots \\
+a_{n1} \cdots a_{nn}
+\end{bmatrix}
+\begin{bmatrix}
+C_{11} \cdots C_{n1} \\
+\vdots \ddots \vdots \\
+C_{1n} \cdots C_{nn}
+\end{bmatrix}
+```
+
+$AA^*$ 在 $(i, j)$ 位置上的元素为 $\sum_{k=1}^{n}a_{ik}C_{jk}$
