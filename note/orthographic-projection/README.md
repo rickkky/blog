@@ -2,64 +2,101 @@
 
 假设：
 
-1. 场景包围盒的范围在 $x$、 $y$、 $z$ 轴上分别为 $[left, right]$、 $[bottom, top]$、 $[near, far]$；
-1. 裁剪空间范围为 $[-1, 1]$；
-1. 场景包围盒所在坐标系与裁剪空间坐标系各坐标轴方向相同。
+- 场景包围盒在 $x$、 $y$、 $z$ 轴上的范围分别为 $[l, r]$、 $[b, t]$、 $[n, f]$；
+- 裁剪空间在 $x$、 $y$、 $z$ 轴上的范围分别为 $[l_c, r_c]$、 $[b_c, t_c]$、 $[n_c, f_c]$。
 
 对于 $x$ 轴，有：
 
 ```math
-left \leqslant x \leqslant right
+l \leqslant x \leqslant r
 ```
 
-通过变换使得该不等式两边等于裁剪空间 $x$ 轴范围，可得：
+通过变换使得该不等式两边等于裁剪空间 $x$ 轴范围：
 
 ```math
--1
+0
 \leqslant
-\frac{2}{right - left}x - \frac{left + right}{right - left}
+\frac{x - l}{r - l}
 \leqslant
 1
+```
+
+```math
+l_c
+\leqslant
+\frac{(r_c - l_c)(x - l)}{r - l} + l_c
+\leqslant
+r_c
+```
+
+```math
+l_c
+\leqslant
+\frac{r_c - l_c}{r - l}x + \frac{l_c \cdot r - r_c \cdot l}{r - l}
+\leqslant
+r_c
 ```
 
 同理，对于 $y$ 轴和 $z$ 轴，有：
 
 ```math
--1
+b_c
 \leqslant
-\frac{2}{top - bottom}y - \frac{bottom + top}{top - bottom}
+\frac{t_c - b_c}{t - b}y + \frac{b_c \cdot t - t_c \cdot b}{t - b}
 \leqslant
-1
+t_c
 ```
 
 ```math
--1
+n_c
 \leqslant
-\frac{2}{far - near}z - \frac{near + far}{far - near}
+\frac{f_c - n_c}{f - n}z + \frac{n_c \cdot f - f_c \cdot n}{f - n}
 \leqslant
-1
+f_c
 ```
 
 当变换前后坐标轴方向相反时，需要注意变号。以 $z$ 轴为例：
 
 ```math
-near \leqslant -z \leqslant far
+n_c
+\leqslant
+- \frac{f_c - n_c}{f - n}z + \frac{n_c \cdot f - f_c \cdot n}{f - n}
+\leqslant
+f_c
+```
+
+当裁剪空间范围为 $[-1, 1]$ 时，有：
+
+```math
+-1
+\leqslant
+\frac{2}{r - l}x - \frac{l + r}{r - l}
+\leqslant
+1
 ```
 
 ```math
 -1
 \leqslant
--\frac{2}{far - near}z - \frac{near + far}{far - near}
+\frac{2}{t - b}y - \frac{b + t}{t - b}
 \leqslant
 1
 ```
 
-在 WebGPU 中，裁剪空间的 $z$ 轴范围为 $[0, 1]$：
+```math
+-1
+\leqslant
+- \frac{2}{f - n}z - \frac{n + f}{f - n}
+\leqslant
+1
+```
+
+在 WebGPU 中，裁剪空间的 $z$ 轴范围为 $[0, 1]$，有：
 
 ```math
 0
 \leqslant
--\frac{1}{far - near}z - \frac{near}{far - near}
+-\frac{1}{f - n}z - \frac{n}{f - n}
 \leqslant
 1
 ```
