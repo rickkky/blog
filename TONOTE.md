@@ -10,7 +10,6 @@
   - barycentric coordinate
 - Z-Buffering
 - Matrix inverse
-- Update orthographic projection with changeable clip spcae
 - Perspective projection
 - Normal transformation
 - Matrix naming
