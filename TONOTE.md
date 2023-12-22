@@ -10,6 +10,5 @@
   - barycentric coordinate
 - Z-Buffering
 - Matrix inverse
-- Perspective projection
 - Normal transformation
 - Matrix naming
