@@ -98,7 +98,7 @@ b = - \frac{(C_f - C_n) d_n d_f}{d_f - d_n}
 }
 ```
 
-若裁剪空间的 $x$ 与 $y$ 轴范围为 $[-1, 1]$，$z$ 轴范围为 $[0, 1]$（WebGPU、Vulkan、DirectX、Metal），则变换矩阵为：
+若裁剪空间的 $x$ 与 $y$ 轴范围为 $[-1, 1]$， $z$ 轴范围为 $[0, 1]$（WebGPU、Vulkan、DirectX、Metal），则变换矩阵为：
 
 ```math
 \large{
