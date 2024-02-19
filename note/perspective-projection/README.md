@@ -80,7 +80,7 @@ b = - \frac{(C_f - C_n) d_n d_f}{d_f - d_n}
    \frac{C_r - C_l}{2a  \tan{\frac{\theta}{2}}} & 0 & 0 & 0 \\
     0 & \frac{C_t - C_b}{2 \tan{\frac{\theta}{2}}} & 0 & 0 \\
     0 & 0 & - \frac{C_f d_f - C_n d_n}{d_f - d_n} & - \frac{(C_f - C_n) d_n d_f}{d_f - d_n} \\
-    0 & 0 & -1 & 1
+    0 & 0 & -1 & 0
   \end{bmatrix}
 }
 ```
@@ -93,7 +93,7 @@ b = - \frac{(C_f - C_n) d_n d_f}{d_f - d_n}
    \frac{1}{a  \tan{\frac{\theta}{2}}} & 0 & 0 & 0 \\
     0 & \frac{1}{\tan{\frac{\theta}{2}}} & 0 & 0 \\
     0 & 0 & - \frac{d_f + d_n}{d_f - d_n} & - \frac{2 d_n d_f}{d_f - d_n} \\
-    0 & 0 & -1 & 1
+    0 & 0 & -1 & 0
   \end{bmatrix}
 }
 ```
@@ -106,7 +106,7 @@ b = - \frac{(C_f - C_n) d_n d_f}{d_f - d_n}
    \frac{1}{a  \tan{\frac{\theta}{2}}} & 0 & 0 & 0 \\
     0 & \frac{1}{\tan{\frac{\theta}{2}}} & 0 & 0 \\
     0 & 0 & - \frac{d_f}{d_f - d_n} & - \frac{d_n d_f}{d_f - d_n} \\
-    0 & 0 & -1 & 1
+    0 & 0 & -1 & 0
   \end{bmatrix}
 }
 ```
