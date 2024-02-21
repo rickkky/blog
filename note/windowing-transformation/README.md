@@ -8,10 +8,10 @@ title: 窗口变换
 
 以三维空间为例，假设：
 
-- 变换前的范围为 $[x_{min}, x_{max}] × [y_{min}, y_{max}] × [z_{min}, z_{max}]$ ；
-- 变换后的范围为 $[x'_{min}, x'_{max}] × [y'_{min}, y'_{max}] × [z'_{min}, z'_{max}]$ 。
+- 变换前的范围为 $[x_{min}, x_{max}] \times [y_{min}, y_{max}] \times [z_{min}, z_{max}]$ ；
+- 变换后的范围为 $[x'_{min}, x'_{max}] \times [y'_{min}, y'_{max}] \times [z'_{min}, z'_{max}]$ 。
 
-对于 x 轴，有：
+对于 $x$ 轴，有：
 
 ```math
 x_{min} \leqslant x \leqslant x_{max}
@@ -70,14 +70,4 @@ z'_{max}
 0 & 0 & \frac{z'_{max} - z'_{min}}{z_{max} - z_{min}} & \frac{z'_{min}z_{max} - z'_{max}z_{min}}{z_{max} - z_{min}} \\
 0 & 0 & 0 & 1
 \end{bmatrix}
-```
-
-若变换前后的坐标轴方向相反，（以 z 轴为例）则有：
-
-```math
-z'_{min}
-\leqslant
--\frac{z'_{max} - z'_{min}}{z_{max} - z_{min}}z + \frac{z'_{min}z_{max} - z'_{max}z_{min}}{z_{max} - z_{min}}
-\leqslant
-z'_{max}
 ```
