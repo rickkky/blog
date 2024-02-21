@@ -1,72 +1,48 @@
-# 计算过程
+---
+id: orthographic-projection
+
+title: 正射投影
+---
+
+正射投影（_Orthographic projection_）实质上是将视域体转换为标准视域体（裁剪空间）的过程，投影结果不会出现透视效果。
 
 假设：
 
-- 空间中有两个包围盒 $A$、$B$，需要建立 $A$ 到 $B$ 的投影；
-- 包围盒 $A$ 在 $x$、 $y$、 $z$ 轴上的范围分别为 $[A_l, A_r]$、 $[A_b, A_t]$、 $[A_n, A_f]$；
-- 包围盒 $B$ 在 $x$、 $y$、 $z$ 轴上的范围分别为 $[B_l, B_r]$、 $[B_b, B_t]$、 $[B_n, B_f]$。
+- 相机观察方向为 $-z$ ，向上方向为 $y$ ；
+- 视域体范围为 $[l, r] \times [b, t] \times [f, n]$ ；
+- 标准视域体范围 $[l', r'] \times [b', t'] \times [f', n']$ 。
 
-对于 $x$ 轴，有：
+正射投影实际上是一类窗口变换，因此投影矩阵为：
 
 ```math
-A_l \leqslant x \leqslant A_r
+\begin{bmatrix}
+  \frac{r' - l'}{r - l} & 0 & 0 & \frac{l'r - r'l}{r - l} \\
+  0 & \frac{t' - b'}{t - b} & 0 & \frac{b't - t'b}{t - b} \\
+  0 & 0 & \frac{n' - f'}{n - f} & \frac{f'n - n'f}{n - f} \\
+  0 & 0 & 0 & 1
+\end{bmatrix}
 ```
 
-通过变换使得该不等式两边等于包围盒 $B$ 在 $x$ 轴上的范围：
+若标准视域体范围为 $[-1, 1]$ ，则变换矩阵为：
 
 ```math
-0
-\leqslant
-\frac{x - A_l}{A_r - A_l}
-\leqslant
-1
+\begin{bmatrix}
+  \frac{2}{r - l} & 0 & 0 & - \frac{r + l}{r - l} \\
+  0 & \frac{2}{t - b} & 0 & - \frac{t + b}{t - b} \\
+  0 & 0 & - \frac{2}{n - f} & - \frac{n + f}{n - f} \\
+  0 & 0 & 0 & 1
+\end{bmatrix}
 ```
 
-```math
-B_l
-\leqslant
-\frac{(B_r - B_l)(x - A_l)}{A_r - A_l} + B_l
-\leqslant
-B_r
-```
+若标准视域体范围为 $[-1, 1] \times [-1, 1] \times [0, 1]$ ，则变换矩阵为：
 
 ```math
-B_l
-\leqslant
-\frac{B_r - B_l}{A_r - A_l}x + \frac{B_l \cdot A_r - B_r \cdot A_l}{A_r - A_l}
-\leqslant
-B_r
-```
-
-同理，对于 $y$ 轴和 $z$ 轴，有：
-
-```math
-B_b
-\leqslant
-\frac{B_t - B_b}{A_t - A_b}y + \frac{B_b \cdot A_t - B_t \cdot A_b}{A_t - A_b}
-\leqslant
-B_t
-```
-
-```math
-B_n
-\leqslant
-\frac{B_f - B_n}{A_f - A_n}z + \frac{B_n \cdot A_f - B_f \cdot A_n}{A_f - A_n}
-\leqslant
-B_f
-```
-
-变换矩阵为：
-
-```math
-\large{
-  \begin{bmatrix}
-    \frac{B_r - B_l}{A_r - A_l} & 0 & 0 & \frac{B_l \cdot A_r - B_r \cdot A_l}{A_r - A_l} \\
-    0 & \frac{B_t - B_b}{A_t - A_b} & 0 & \frac{B_b \cdot A_t - B_t \cdot A_b}{A_t - A_b} \\
-    0 & 0 & \frac{B_f - B_n}{A_f - A_n} & \frac{B_n \cdot A_f - B_f \cdot A_n}{A_f - A_n} \\
-    0 & 0 & 0 & 1
-  \end{bmatrix}
-}
+\begin{bmatrix}
+  \frac{2}{r - l} & 0 & 0 & - \frac{r + l}{r - l} \\
+  0 & \frac{2}{t - b} & 0 & - \frac{t + b}{t - b} \\
+  0 & 0 & \frac{1}{n - f} & - \frac{n}{n - f} \\
+  0 & 0 & 0 & 1
+\end{bmatrix}
 ```
 
 对于正射投影，可以将其视为场景包围盒到裁剪空间的投影。假设：
