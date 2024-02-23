@@ -71,13 +71,3 @@ z'_{max}
 0 & 0 & 0 & 1
 \end{bmatrix}
 ```
-
-若变换前后的坐标轴方向相反，（以 z 轴为例）则有：
-
-```math
-z'_{min}
-\leqslant
--\frac{z'_{max} - z'_{min}}{z_{max} - z_{min}}z + \frac{z'_{min}z_{max} - z'_{max}z_{min}}{z_{max} - z_{min}}
-\leqslant
-z'_{max}
-```
