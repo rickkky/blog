@@ -9,7 +9,7 @@ title: 窗口变换
 以三维空间为例，假设：
 
 - 变换前的范围为 $[x_{min}, x_{max}] \times [y_{min}, y_{max}] \times [z_{min}, z_{max}]$ ；
-- 变换后的范围为 $[x'\_{min}, x'\_{max}] \times [y'\_{min}, y'\_{max}] \times [z'\_{min}, z'\_{max}]$ 。
+- 变换后的范围为 $[x'\\_{min}, x'\\_{max}] \times [y'\\_{min}, y'\\_{max}] \times [z'\\_{min}, z'\\_{max}]$ ；
 
 对于 $x$ 轴，有：
 
