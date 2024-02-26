@@ -48,6 +48,8 @@ P_o =
 在 WebGL 中，标准视域体范围为 $[-1, 1]$ ，投影矩阵为：
 
 ```math
+P_o
+=
 \begin{bmatrix}
   \frac{2}{r - l} & 0 & 0 & -\frac{r + l}{r - l} \\
   0 & \frac{2}{t - b} & 0 & -\frac{t + b}{t - b} \\
@@ -59,6 +61,8 @@ P_o =
 在 WebGPU 中，标准视域体范围为 $[-1, 1] \times [-1, 1] \times [0, 1]$ ，投影矩阵为：
 
 ```math
+P_o
+=
 \begin{bmatrix}
   \frac{2}{r - l} & 0 & 0 & -\frac{r + l}{r - l} \\
   0 & \frac{2}{t - b} & 0 & -\frac{t + b}{t - b} \\
