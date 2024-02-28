@@ -6,8 +6,6 @@ title: 透视投影
 
 透视投影（_Perspective projection_）将相机空间中的视域体转换为裁剪空间中的标准视域体。由于透视投影的视域体是一个截锥体，因此投影结果会出现近大远小的透视效果。
 
-# 透视变换
-
 透视投影可以视为透视变换和正射投影的复合变换：
 
 1. 透视变换：将视截锥体变换为一个长方体；
@@ -18,8 +16,8 @@ title: 透视投影
 - 相机放置在 $z=0$ 的 $x-y$ 平面上，观察方向为 $-z$ ，向上方向为 $+y$ ；
 - 相机到视截锥体近平面的距离为 $n$，远平面的距离为 $f$ ；
 - 视截锥体近平面的范围为 $[l, r] \times [b, t]$ ，远截面的范围为 $[l_f, r_f] \times [b_f, t_f]$ ；
-- 变换后的视域体范围为 $[l, r] \times [b, t] \times [-f, -n]$ ；
-- 视截锥体内的点 $(x, y, z)$ 变换后为 $(x', y', z')$ ；
+- 经过透视变换后的视域体范围为 $[l, r] \times [b, t] \times [-f, -n]$ ；
+- 视截锥体内的点 $(x, y, z)$ 经过透视变换后为 $(x', y', z')$ ；
 
 对于视截锥体沿 $z$ 轴方向上的每一个截面，实质上是对该截面进行窗口变换。根据相似三角形的性质，可得：
 
@@ -39,7 +37,7 @@ M_p
 \begin{bmatrix}
   n & 0 & 0 & 0 \\
   0 & n & 0 & 0 \\
-  0 & 0 & a & b \\
+  0 & 0 & k & b \\
   0 & 0 & -1 & 0
 \end{bmatrix}
 ```
@@ -47,23 +45,23 @@ M_p
 即：
 
 ```math
-z' = \frac{az + b}{-z}
+z' = \frac{kz + b}{-z}
 ```
 
 投影变换在近平面和远平面上保持 $z$ 值不变，代入 $-n$ 和 $-f$ 可得：
 
 ```math
--an + b = -n^2
+-kn + b = -n^2
 ```
 
 ```math
--af + b = -f^2
+-kf + b = -f^2
 ```
 
 解得：
 
 ```math
-a = f + n
+k = f + n
 ```
 
 ```math
@@ -102,121 +100,79 @@ P_p
 \end{bmatrix}
 ```
 
-在实际应用中，通常将相机放置在原点，使用视场角（_Field of view_）和宽高比（_Aspect ratio_）来描述视截锥体。
-
-假设：
-
-- 相机空间坐标系为右手系，相机放置在原点，观察方向为 $-z$ ，向上方向为 $+y$ ；
-
----
-
-假设：
-
-- 相机放置在原点，朝向 $z$ 轴负方向；相机到视锥体近平面的距离为 $d_n$，远平面的距离为 $d_f$；
-- 视锥体在 $y$ 轴方向上的视场角为 $\theta$，宽高比为 $a$；
-- 裁剪空间在 $x$、 $y$、 $z$ 轴上的范围分别为 $[l', r']$、 $[b', t']$、 $[n', f']$，且在 $x$、 $y$ 轴上关于原点对称。
-
-当 $z$ 值确定时，视锥体切面上点的 $x$、 $y$ 范围为：
+在实际应用中，通常将相机放置在原点。即：
 
 ```math
--y_{max} \leqslant y \leqslant y_{max}
+l = -r
 ```
 
 ```math
--x_{max} \leqslant x \leqslant x_{max}
+b = -t
+```
+
+代入可得透视投影矩阵为：
+
+```math
+P_p
+=
+\begin{bmatrix}
+  \frac{(r' - l')n}{2r} & 0 & \frac{r' + l'}{2} & 0 \\
+  0 & \frac{(t' - b')n}{2t} & \frac{t' + b'}{2} & 0 \\
+  0 & 0 & -\frac{f'f - n'n}{f - n} & -\frac{(f' - n')fn}{f - n} \\
+  0 & 0 & -1 & 0
+\end{bmatrix}
+```
+
+还可以使用视场角（_Field of view_）和宽高比（_Aspect ratio_）来描述视截锥体。假设：
+
+- 视截锥体在 $y$ 轴方向上的视场角为 $\theta$ ；
+- 视截锥体截面宽高比为 $a$ ；
+
+则：
+
+```math
+t = n \tan{\frac{\theta}{2}}
 ```
 
 ```math
-y_{max} = -z \tan{\frac{\theta}{2}}
+r = t a
 ```
 
+代入可得透视投影矩阵为：
+
 ```math
-x_{max} = y_{max} a
+P_p
+=
+\begin{bmatrix}
+  \frac{1}{2a \tan{\frac{\theta}{2}}} & 0 & \frac{r' + l'}{2} & 0 \\
+  0 & \frac{1}{2 \tan{\frac{\theta}{2}}} & \frac{t' + b'}{2} & 0 \\
+  0 & 0 & -\frac{f'f - n'n}{f - n} & -\frac{(f' - n')fn}{f - n} \\
+  0 & 0 & -1 & 0
+\end{bmatrix}
 ```
 
-将不等式两边变换为裁剪空间范围可得：
+在 WebGL 中，标准视域体范围为 $[-1, 1]$ ，透视投影矩阵为：
 
 ```math
-y_c = \frac{t' - b'}{2 y_{max}} y
+P_p
+=
+\begin{bmatrix}
+  \frac{1}{2a \tan{\frac{\theta}{2}}} & 0 & \frac{r' + l'}{2} & 0 \\
+  0 & \frac{1}{2 \tan{\frac{\theta}{2}}} & \frac{t' + b'}{2} & 0 \\
+  0 & 0 & -\frac{f + n}{f - n} & -\frac{2fn}{f - n} \\
+  0 & 0 & -1 & 0
+\end{bmatrix}
 ```
 
-```math
-x_c = \frac{r' - l'}{2 x_{max}} x
-```
-
-代入 $y_{max}$ 和 $x_{max}$ 可得：
+在 WebGPU 中，标准视域体范围为 $[-1, 1] \times [-1, 1] \times [0, 1]$ ，正射投影矩阵为：
 
 ```math
-y_c = \frac{t' - b'}{2 \tan{\frac{\theta}{2}}} y \cdot \frac{1}{-z}
-```
-
-```math
-x_c = \frac{r' - l'}{2a  \tan{\frac{\theta}{2}}} x \cdot \frac{1}{-z}
-```
-
-根据齐次坐标的特性，假设经过变换后坐标的 $w$ 值为 $-z$。
-
-对于 $z$ 轴上的变换，假设变换关系为：
-
-```math
-z_c = \frac{k z + b}{-z}
-```
-
-带入裁剪空间的 $z$ 轴范围可得：
-
-```math
-n' = \frac{- k d_n + b}{d_n}
-```
-
-```math
-f' = \frac{- k d_f + b}{d_f}
-```
-
-解得：
-
-```math
-k = - \frac{f' d_f - n' d_n}{d_f - d_n}
-```
-
-```math
-b = - \frac{(f' - n') d_n d_f}{d_f - d_n}
-```
-
-变换矩阵为：
-
-```math
-\large{
-  \begin{bmatrix}
-   \frac{r' - l'}{2a  \tan{\frac{\theta}{2}}} & 0 & 0 & 0 \\
-    0 & \frac{t' - b'}{2 \tan{\frac{\theta}{2}}} & 0 & 0 \\
-    0 & 0 & - \frac{f' d_f - n' d_n}{d_f - d_n} & - \frac{(f' - n') d_n d_f}{d_f - d_n} \\
-    0 & 0 & -1 & 0
-  \end{bmatrix}
-}
-```
-
-若裁剪空间各坐标轴的范围为 $[-1, 1]$（WebGL、OpenGL），则变换矩阵为：
-
-```math
-\large{
-  \begin{bmatrix}
-   \frac{1}{a  \tan{\frac{\theta}{2}}} & 0 & 0 & 0 \\
-    0 & \frac{1}{\tan{\frac{\theta}{2}}} & 0 & 0 \\
-    0 & 0 & - \frac{d_f + d_n}{d_f - d_n} & - \frac{2 d_n d_f}{d_f - d_n} \\
-    0 & 0 & -1 & 0
-  \end{bmatrix}
-}
-```
-
-若裁剪空间的 $x$ 与 $y$ 轴范围为 $[-1, 1]$， $z$ 轴范围为 $[0, 1]$（WebGPU、Vulkan、DirectX、Metal），则变换矩阵为：
-
-```math
-\large{
-  \begin{bmatrix}
-   \frac{1}{a  \tan{\frac{\theta}{2}}} & 0 & 0 & 0 \\
-    0 & \frac{1}{\tan{\frac{\theta}{2}}} & 0 & 0 \\
-    0 & 0 & - \frac{d_f}{d_f - d_n} & - \frac{d_n d_f}{d_f - d_n} \\
-    0 & 0 & -1 & 0
-  \end{bmatrix}
-}
+P_p
+=
+\begin{bmatrix}
+  \frac{1}{2a \tan{\frac{\theta}{2}}} & 0 & \frac{r' + l'}{2} & 0 \\
+  0 & \frac{1}{2 \tan{\frac{\theta}{2}}} & \frac{t' + b'}{2} & 0 \\
+  0 & 0 & -\frac{f}{f - n} & -\frac{fn}{f - n} \\
+  0 & 0 & -1 & 0
+\end{bmatrix}
 ```
