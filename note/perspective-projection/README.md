@@ -176,3 +176,7 @@ P_p
   0 & 0 & -1 & 0
 \end{bmatrix}
 ```
+
+> 参考：
+>
+> - [The Perspective Projection Matrix - Scratchapixel](https://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix/opengl-perspective-projection-matrix.html)
