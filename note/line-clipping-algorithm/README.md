@@ -1,5 +1,5 @@
 ---
-id: line-cliping-algorithm
+id: line-clipping-algorithm
 
 title: 线段裁剪算法
 ---
