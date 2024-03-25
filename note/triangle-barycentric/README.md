@@ -4,9 +4,45 @@ id: triangle-barycentric
 title: 重心坐标
 ---
 
+在二维平面内，根据三角形的三个顶点 $\bold a$ 、 $\bold b$ 、 $\bold c$ 建立一个非正交坐标系（重心坐标系）。坐标系原点为 $\bold a$ ，基向量分别为 $\bold b - \bold a$ 和 $\bold c - \bold a$ 。平面内任意一点 $\bold p$ 可表示为：
+
+```math
+\bold p = \bold a + \beta (\bold b - \bold a) + \gamma (\bold c - \bold a)
+```
+
+即：
+
+```math
+\bold p = (1 - \beta - \gamma) \bold a + \beta \bold b + \gamma \bold c
+```
+
+通常情况下，会定义一个 $\alpha$ 来简化等式：
+
+```math
+\alpha \equiv 1 - \beta - \gamma
+```
+
+则点 $\bold p$ 的重心坐标可表示为：
+
+```math
+\bold p (\alpha, \beta, \gamma) = \alpha \bold a + \beta \bold b + \gamma \bold c
+```
+
+当重心坐标满足以下条件时，点 $\bold p$ 在三角形内：
+
+```math
+\begin{cases}
+0 \lt \alpha \lt 1 \\
+0 \lt \beta \lt 1 \\
+0 \lt \gamma \lt 1 \\
+\end{cases}
+```
+
+当其中一个分量为 $0$ 时， $\bold p$ 在三角形的边界上；当两个分量为 $0$ 时， $\bold p$ 在三角形的顶点上。
+
 假设：
 
-- 三角形 $ABC$ 的三个顶点坐标分别为 $A(x_0, y_0)$, $B(x_1, y_1)$, $C(x_2, y_2)$ ；
+- $\triangle ABC$ 的三个顶点坐标分别为 $A(x_0, y_0)$ 、 $B(x_1, y_1)$ 、 $C(x_2, y_2)$ ；
 - 三角形平面内任意一点 $P(x, y)$ ；
 - $P$ 关于三角形 $ABC$ 的重心坐标为 $(\alpha, \beta, \gamma)$ ；
 
@@ -36,6 +72,13 @@ y = (1 - \beta - \gamma) y_0 + \beta y_1 + \gamma y_2
 \end{cases}
 ```
 
+```math
+\begin{cases}
+\beta = \frac{(x_2 - x_0)(y_0 - y) - (x_0 - x)(y_2 - y_0)}{(x_1 - x_0)(y_2 - y_0) - (x_2 - x_0)(y_1 - y_0)} \\
+\gamma = \frac{(x_1 - x_0)(y_0 - y) - (x_0 - x)(y_1 - y_0)}{(x_1 - x_0)(y_2 - y_0) - (x_2 - x_0)(y_1 - y_0)}
+\end{cases}
+```
+
 即：
 
 ```math
@@ -44,10 +87,10 @@ y = (1 - \beta - \gamma) y_0 + \beta y_1 + \gamma y_2
 \end{bmatrix}
 =
 \begin{bmatrix}
-x_1 - x_0 \\ x_2 - x_0 \\ x - x_0
+x_1 - x_0 \\ x_2 - x_0 \\ x_0 - x
 \end{bmatrix}
 \times
 \begin{bmatrix}
-y_1 - y_0 \\ y_2 - y_0 \\ y - y_0
+y_1 - y_0 \\ y_2 - y_0 \\ y_0 - y
 \end{bmatrix}
 ```
