@@ -35,3 +35,19 @@ y = (1 - \beta - \gamma) y_0 + \beta y_1 + \gamma y_2
 \gamma = \frac{(x - x_0)(y_1 - y_0) - (y - y_0)(x_1 - x_0)}{(x_2 - x_0)(y_1 - y_0) - (y_2 - y_0)(x_1 - x_0)}
 \end{cases}
 ```
+
+即：
+
+```math
+\begin{bmatrix}
+\beta \\ \gamma \\ 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+x_1 - x_0 \\ x_2 - x_0 \\ x - x_0
+\end{bmatrix}
+\times
+\begin{bmatrix}
+y_1 - y_0 \\ y_2 - y_0 \\ y - y_0
+\end{bmatrix}
+```
