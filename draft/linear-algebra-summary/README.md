@@ -183,6 +183,18 @@ M^{-1}M\vec{x}=M^{-1}\vec{v}
 
 # 叉积
 
+二维：
+
+```math
+\vec{v} \times \vec{w}
+=
+v_x w_y - w_x v_y
+=
+\Vert{\vec{v}}\Vert \Vert{\vec{w}}\Vert \sin{\theta}
+```
+
+三维：
+
 ```math
 \vec{v} \times \vec{w}
 =
