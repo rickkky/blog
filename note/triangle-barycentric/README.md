@@ -4,16 +4,16 @@ id: triangle-barycentric
 title: 重心坐标
 ---
 
-在二维平面内，根据三角形的三个顶点 $\bold a$ 、 $\bold b$ 、 $\bold c$ 建立一个非正交坐标系（重心坐标系）。坐标系原点为 $\bold a$ ，基向量分别为 $\bold b - \bold a$ 和 $\bold c - \bold a$ 。平面内任意一点 $\bold p$ 可表示为：
+在二维平面内，根据三角形的三个顶点 $\textbf{a}$ 、 $\textbf{b}$ 、 $\textbf{c}$ 建立一个非正交坐标系（重心坐标系）。坐标系原点为 $\textbf{a}$ ，基向量分别为 $\textbf{b} - \textbf{a}$ 和 $\textbf{c} - \textbf{a}$ 。平面内任意一点 $\textbf{p}$ 可表示为：
 
 ```math
-\bold p = \bold a + \beta (\bold b - \bold a) + \gamma (\bold c - \bold a)
+\textbf{p} = \textbf{a} + \beta (\textbf{b} - \textbf{a}) + \gamma (\textbf{c} - \textbf{a})
 ```
 
 即：
 
 ```math
-\bold p = (1 - \beta - \gamma) \bold a + \beta \bold b + \gamma \bold c
+\textbf{p} = (1 - \beta - \gamma) \textbf{a} + \beta \textbf{b} + \gamma \textbf{c}
 ```
 
 通常情况下，会定义一个 $\alpha$ 来简化等式：
@@ -22,13 +22,13 @@ title: 重心坐标
 \alpha \equiv 1 - \beta - \gamma
 ```
 
-则点 $\bold p$ 的重心坐标可表示为：
+则点 $\textbf{p}$ 的重心坐标可表示为：
 
 ```math
-\bold p (\alpha, \beta, \gamma) = \alpha \bold a + \beta \bold b + \gamma \bold c
+\textbf{p} (\alpha, \beta, \gamma) = \alpha \textbf{a} + \beta \textbf{b} + \gamma \textbf{c}
 ```
 
-当重心坐标满足以下条件时，点 $\bold p$ 在三角形内：
+当重心坐标满足以下条件时，点 $\textbf{p}$ 在三角形内：
 
 ```math
 \begin{cases}
@@ -38,7 +38,11 @@ title: 重心坐标
 \end{cases}
 ```
 
-当其中一个分量为 $0$ 时， $\bold p$ 在三角形的边界上；当两个分量为 $0$ 时， $\bold p$ 在三角形的顶点上。
+当其中一个分量为 $0$ 时， $\textbf{p}$ 在三角形的边界上；当两个分量为 $0$ 时， $\textbf{p}$ 在三角形的顶点上。
+
+## 重心坐标的计算
+
+### 解方程组
 
 可以通过解方程组的方式求解重心坐标：
 
@@ -48,6 +52,8 @@ x_p = (1 - \beta - \gamma) x_a + \beta x_b + \gamma x_c \\
 y_p = (1 - \beta - \gamma) y_a + \beta y_b + \gamma y_c
 \end{cases}
 ```
+
+### 根据重心坐标的几何特性计算
 
 也可以通过重心坐标的几何特性进行求解。以 $\beta$ 为例：
 
@@ -75,4 +81,38 @@ y_p = (1 - \beta - \gamma) y_a + \beta y_b + \gamma y_c
 \gamma
 =
 \frac{(y_b - y_a) x_p + (x_a - x_b) y_p + x_b y_a - x_a y_b}{(y_b - y_a) x_c + (x_a - x_b) y_c + x_b y_a - x_a y_b}
+```
+
+### 根据向量点乘计算
+
+重心坐标等式可以变换为：
+
+```math
+(\textbf{p} - \textbf{a}) = \beta (\textbf{b} - \textbf{a}) + \gamma (\textbf{c} - \textbf{a})
+```
+
+可以将该等式简化为：
+
+```math
+\vec{v_p} = \beta \vec{v_b} + \gamma \vec{v_c}
+```
+
+将该等式两边同时点乘 $\vec{v_b}$ 或 $\vec{v_c}$ ，可得：
+
+```math
+\vec{v_p} \cdot \vec{v_b} = \beta \vec{v_b} \cdot \vec{v_b} + \gamma \vec{v_c} \cdot \vec{v_b}
+```
+
+```math
+\vec{v_p} \cdot \vec{v_c} = \beta \vec{v_b} \cdot \vec{v_c} + \gamma \vec{v_c} \cdot \vec{v_c}
+```
+
+解上述方程组即可得到 $\beta$ 和 $\gamma$ 的值：
+
+```math
+\beta = \frac{\vec{v_p} \cdot \vec{v_c} - \vec{v_c} \cdot \vec{v_b}}{\vec{v_b} \cdot \vec{v_b} - \vec{v_c} \cdot \vec{v_b}}
+```
+
+```math
+\gamma = \frac{\vec{v_p} \cdot \vec{v_b} - \vec{v_b} \cdot \vec{v_c}}{\vec{v_c} \cdot \vec{v_c} - \vec{v_b} \cdot \vec{v_c}}
 ```
