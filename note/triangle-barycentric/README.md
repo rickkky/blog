@@ -1,10 +1,10 @@
 ---
-id: triangle-barycentric
+id: triangle-barycentric-coordinate-system
 
-title: 重心坐标
+title: 三角形重心坐标系
 ---
 
-在二维平面内，根据三角形的三个顶点 $\textbf{a}$ 、 $\textbf{b}$ 、 $\textbf{c}$ 建立一个非正交坐标系（重心坐标系）。坐标系原点为 $\textbf{a}$ ，基向量分别为 $\textbf{b} - \textbf{a}$ 和 $\textbf{c} - \textbf{a}$ 。平面内任意一点 $\textbf{p}$ 可表示为：
+在二维平面内，根据三角形的三个顶点 $\textbf{a}$ 、 $\textbf{b}$ 、 $\textbf{c}$ 建立一个非正交坐标系（重心坐标系），坐标系原点为 $\textbf{a}$ ，基向量分别为 $\textbf{b} - \textbf{a}$ 和 $\textbf{c} - \textbf{a}$ 。平面内任意一点 $\textbf{p}$ 可表示为：
 
 ```math
 \textbf{p} = \textbf{a} + \beta (\textbf{b} - \textbf{a}) + \gamma (\textbf{c} - \textbf{a})
@@ -91,28 +91,28 @@ y_p = (1 - \beta - \gamma) y_a + \beta y_b + \gamma y_c
 (\textbf{p} - \textbf{a}) = \beta (\textbf{b} - \textbf{a}) + \gamma (\textbf{c} - \textbf{a})
 ```
 
-可以将该等式简化为：
+将该等式简化为：
 
 ```math
 \vec{v_p} = \beta \vec{v_b} + \gamma \vec{v_c}
 ```
 
-将该等式两边同时点乘 $\vec{v_b}$ 或 $\vec{v_c}$ ，可得：
+等式两边同时点乘 $\vec{v_b}$ 或 $\vec{v_c}$ ，可得：
 
 ```math
-\vec{v_p} \cdot \vec{v_b} = \beta \vec{v_b} \cdot \vec{v_b} + \gamma \vec{v_c} \cdot \vec{v_b}
+dot_{bp} = \beta dot_{bb} + \gamma dot_{bc}
 ```
 
 ```math
-\vec{v_p} \cdot \vec{v_c} = \beta \vec{v_b} \cdot \vec{v_c} + \gamma \vec{v_c} \cdot \vec{v_c}
+dot_{cp} = \beta dot_{bc} + \gamma dot_{cc}
 ```
 
-解上述方程组即可得到 $\beta$ 和 $\gamma$ 的值：
+解得：
 
 ```math
-\beta = \frac{\vec{v_p} \cdot \vec{v_c} - \vec{v_c} \cdot \vec{v_b}}{\vec{v_b} \cdot \vec{v_b} - \vec{v_c} \cdot \vec{v_b}}
+\beta = \frac{dot_{cc} dot_{bp} - dot_{bc} dot_{cp}}{dot_{bb} dot_{cc} - dot_{bc} dot_{bc}}
 ```
 
 ```math
-\gamma = \frac{\vec{v_p} \cdot \vec{v_b} - \vec{v_b} \cdot \vec{v_c}}{\vec{v_c} \cdot \vec{v_c} - \vec{v_b} \cdot \vec{v_c}}
+\gamma = \frac{dot_{bb} dot_{cp} - dot_{bc} dot_{bp}}{dot_{bb} dot_{cc} - dot_{bc} dot_{bc}}
 ```
