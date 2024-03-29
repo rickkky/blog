@@ -40,9 +40,9 @@ title: 三角形重心坐标系
 
 当其中一个分量为 $0$ 时， $\textbf{p}$ 在三角形的边界上；当两个分量为 $0$ 时， $\textbf{p}$ 在三角形的顶点上。
 
-## 重心坐标的计算
+# 重心坐标的计算
 
-### 解方程组
+## 解方程组
 
 可以通过解方程组的方式求解重心坐标：
 
@@ -53,7 +53,7 @@ y_p = (1 - \beta - \gamma) y_a + \beta y_b + \gamma y_c
 \end{cases}
 ```
 
-### 根据重心坐标的几何特性计算
+## 根据重心坐标的几何特性计算
 
 也可以通过重心坐标的几何特性进行求解。面积比可以转化为点到直线距离的比值。以 $\beta$ 为例：
 
@@ -83,7 +83,7 @@ y_p = (1 - \beta - \gamma) y_a + \beta y_b + \gamma y_c
 \frac{(y_b - y_a) x_p + (x_a - x_b) y_p + x_b y_a - x_a y_b}{(y_b - y_a) x_c + (x_a - x_b) y_c + x_b y_a - x_a y_b}
 ```
 
-### 根据向量点乘计算
+## 根据向量点积计算
 
 重心坐标等式可以变换为：
 
@@ -94,59 +94,55 @@ y_p = (1 - \beta - \gamma) y_a + \beta y_b + \gamma y_c
 将该等式简化为：
 
 ```math
-\vec{v_p} = \beta \vec{v_b} + \gamma \vec{v_c}
+\vec{v_{ap}} = \beta \vec{v_{ab}} + \gamma \vec{v_{ac}}
 ```
 
-// TODO: 改为 v_{ap} ...
-
-等式两边同时点乘 $\vec{v_b}$ 或 $\vec{v_c}$ ，可得：
+等式两边同时点乘 $\vec{v_{ab}}$ 或 $\vec{v_{ac}}$ ，可得：
 
 ```math
-v_b \cdot v_p = \beta v_b \cdot v_b + \gamma v_b \cdot v_c
+v_{ab} \cdot v_{ap} = \beta v_{ab} \cdot v_{ab} + \gamma v_{ab} \cdot v_{ac}
 ```
 
 ```math
-v_c \cdot v_p = \beta v_b \cdot v_c + \gamma v_c \cdot v_c
+v_{ac} \cdot v_{ap} = \beta v_{ab} \cdot v_{ac} + \gamma v_{ac} \cdot v_{ac}
 ```
 
 解得：
 
 ```math
-\beta = \frac{(v_c \cdot v_c) (v_b \cdot v_p) - (v_b \cdot v_c) (v_c \cdot v_p)}{(v_b \cdot v_b) (v_c \cdot v_c) - v_b \cdot v_c (v_b \cdot v_c)}
+\beta = \frac{(v_{ac} \cdot v_{ac}) (v_{ab} \cdot v_{ap}) - (v_{ab} \cdot v_{ac}) (v_{ac} \cdot v_{ap})}{(v_{ab} \cdot v_{ab}) (v_{ac} \cdot v_{ac}) - v_{ab} \cdot v_{ac} (v_{ab} \cdot v_{ac})}
 ```
 
 ```math
-\gamma = \frac{(v_b \cdot v_b) (v_c \cdot v_p) - (v_b \cdot v_c) (v_b \cdot v_p)}{(v_b \cdot v_b) (v_c \cdot v_c) - (v_b \cdot v_c) (v_b \cdot v_c)}
+\gamma = \frac{(v_{ab} \cdot v_{ab}) (v_{ac} \cdot v_{ap}) - (v_{ab} \cdot v_{ac}) (v_{ab} \cdot v_{ap})}{(v_{ab} \cdot v_{ab}) (v_{ac} \cdot v_{ac}) - (v_{ab} \cdot v_{ac}) (v_{ab} \cdot v_{ac})}
 ```
 
-## 根据矩阵乘法计算
+## 根据向量叉积计算
 
 重心坐标等式可以变换为：
 
 ```math
-\beta \vec{v_b} + \gamma \vec{v_c} - \vec{v_p} = \vec{0}
+\beta \vec{v_{ab}} + \gamma \vec{v_{ac}} - \vec{v_{ap}} = \vec{0}
 ```
 
 即：
 
 ```math
-\beta (x_b - x_a) + \gamma (x_c - x_a) - (x_p - x_a) = 0
+\beta x_{ab} + \gamma x_{ac} - x_{ap} = 0
 ```
 
 ```math
-\beta (y_b - y_a) + \gamma (y_c - y_a) - (y_p - y_a) = 0
+\beta y_{ab} + \gamma y_{ac} - y_{ap} = 0
 ```
-
-// TODO: 改为 x_{ab} ...
 
 转换为矩阵乘法形式：
 
 ```math
 [\beta, \gamma, 1]
 \begin{bmatrix}
-  x_{ba} \\
-  x_{ca} \\
-  x_{ap}
+  x_{ab} \\
+  x_{ac} \\
+  x_{pa}
 \end{bmatrix}
 = 0
 ```
@@ -154,11 +150,28 @@ v_c \cdot v_p = \beta v_b \cdot v_c + \gamma v_c \cdot v_c
 ```math
 [\beta, \gamma, 1]
 \begin{bmatrix}
-  y_{ba} \\
-  y_{ca} \\
-  y_{ap}
+  y_{ab} \\
+  y_{ac} \\
+  y_{pa}
 \end{bmatrix}
 = 0
 ```
 
-这表示向量 $(\beta, \gamma, 1)$ 垂直于向量 $(x_{ba}, x_{ca}, x_{ap})$ 和 $(y_{ba}, y_{ca}, y_{ap})$ 。
+这表示向量 $(\beta, \gamma, 1)$ 垂直于向量 $(x_{ba}, x_{ca}, x_{ap})$ 和 $(y_{ba}, y_{ca}, y_{ap})$ 。可以通过向量叉积计算同时垂直于两个向量的向量，可得：
+
+```math
+\begin{bmatrix}
+  \beta \\ \gamma \\ 1
+\end{bmatrix}
+=
+k
+\begin{bmatrix}
+  x_{ab} \\ x_{ac} \\ x_{pa}
+\end{bmatrix}
+\times
+\begin{bmatrix}
+  y_{ab} \\ y_{ac} \\ y_{pa}
+\end{bmatrix}
+```
+
+其中 $k$ 为向量叉积结果的第三个分量，将其视为齐次坐标最终进行归一化即可得到重心坐标。
