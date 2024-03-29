@@ -55,7 +55,7 @@ y_p = (1 - \beta - \gamma) y_a + \beta y_b + \gamma y_c
 
 ### 根据重心坐标的几何特性计算
 
-也可以通过重心坐标的几何特性进行求解。以 $\beta$ 为例：
+也可以通过重心坐标的几何特性进行求解。面积比可以转化为点到直线距离的比值。以 $\beta$ 为例：
 
 ```math
 \beta = \frac{f_{ac}(x_p, y_p)}{f_{ac}(x_b, y_b)}
@@ -97,22 +97,68 @@ y_p = (1 - \beta - \gamma) y_a + \beta y_b + \gamma y_c
 \vec{v_p} = \beta \vec{v_b} + \gamma \vec{v_c}
 ```
 
+// TODO: 改为 v_{ap} ...
+
 等式两边同时点乘 $\vec{v_b}$ 或 $\vec{v_c}$ ，可得：
 
 ```math
-dot_{bp} = \beta dot_{bb} + \gamma dot_{bc}
+v_b \cdot v_p = \beta v_b \cdot v_b + \gamma v_b \cdot v_c
 ```
 
 ```math
-dot_{cp} = \beta dot_{bc} + \gamma dot_{cc}
+v_c \cdot v_p = \beta v_b \cdot v_c + \gamma v_c \cdot v_c
 ```
 
 解得：
 
 ```math
-\beta = \frac{dot_{cc} dot_{bp} - dot_{bc} dot_{cp}}{dot_{bb} dot_{cc} - dot_{bc} dot_{bc}}
+\beta = \frac{(v_c \cdot v_c) (v_b \cdot v_p) - (v_b \cdot v_c) (v_c \cdot v_p)}{(v_b \cdot v_b) (v_c \cdot v_c) - v_b \cdot v_c (v_b \cdot v_c)}
 ```
 
 ```math
-\gamma = \frac{dot_{bb} dot_{cp} - dot_{bc} dot_{bp}}{dot_{bb} dot_{cc} - dot_{bc} dot_{bc}}
+\gamma = \frac{(v_b \cdot v_b) (v_c \cdot v_p) - (v_b \cdot v_c) (v_b \cdot v_p)}{(v_b \cdot v_b) (v_c \cdot v_c) - (v_b \cdot v_c) (v_b \cdot v_c)}
 ```
+
+## 根据矩阵乘法计算
+
+重心坐标等式可以变换为：
+
+```math
+\beta \vec{v_b} + \gamma \vec{v_c} - \vec{v_p} = \vec{0}
+```
+
+即：
+
+```math
+\beta (x_b - x_a) + \gamma (x_c - x_a) - (x_p - x_a) = 0
+```
+
+```math
+\beta (y_b - y_a) + \gamma (y_c - y_a) - (y_p - y_a) = 0
+```
+
+// TODO: 改为 x_{ab} ...
+
+转换为矩阵乘法形式：
+
+```math
+[\beta, \gamma, 1]
+\begin{bmatrix}
+  x_{ba} \\
+  x_{ca} \\
+  x_{ap}
+\end{bmatrix}
+= 0
+```
+
+```math
+[\beta, \gamma, 1]
+\begin{bmatrix}
+  y_{ba} \\
+  y_{ca} \\
+  y_{ap}
+\end{bmatrix}
+= 0
+```
+
+这表示向量 $(\beta, \gamma, 1)$ 垂直于向量 $(x_{ba}, x_{ca}, x_{ap})$ 和 $(y_{ba}, y_{ca}, y_{ap})$ 。
