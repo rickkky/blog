@@ -37,7 +37,7 @@ M_p
 \begin{bmatrix}
   n & 0 & 0 & 0 \\
   0 & n & 0 & 0 \\
-  0 & 0 & k & b \\
+  0 & 0 & k & c \\
   0 & 0 & -1 & 0
 \end{bmatrix}
 ```
@@ -45,17 +45,17 @@ M_p
 即：
 
 ```math
-z' = \frac{kz + b}{-z}
+z' = \frac{kz + c}{-z}
 ```
 
 投影变换在近平面和远平面上保持 $z$ 值不变，代入 $-n$ 和 $-f$ 可得：
 
 ```math
--kn + b = -n^2
+-kn + c = -n^2
 ```
 
 ```math
--kf + b = -f^2
+-kf + c = -f^2
 ```
 
 解得：
@@ -65,7 +65,7 @@ k = f + n
 ```
 
 ```math
-b = fn
+c = fn
 ```
 
 透视变换矩阵为：
@@ -157,8 +157,8 @@ P_p
 P_p
 =
 \begin{bmatrix}
-  \frac{1}{2a \tan{\frac{\theta}{2}}} & 0 & \frac{r' + l'}{2} & 0 \\
-  0 & \frac{1}{2 \tan{\frac{\theta}{2}}} & \frac{t' + b'}{2} & 0 \\
+  \frac{1}{2a \tan{\frac{\theta}{2}}} & 0 & 0 & 0 \\
+  0 & \frac{1}{2 \tan{\frac{\theta}{2}}} & 0 & 0 \\
   0 & 0 & -\frac{f + n}{f - n} & -\frac{2fn}{f - n} \\
   0 & 0 & -1 & 0
 \end{bmatrix}
@@ -170,8 +170,8 @@ P_p
 P_p
 =
 \begin{bmatrix}
-  \frac{1}{2a \tan{\frac{\theta}{2}}} & 0 & \frac{r' + l'}{2} & 0 \\
-  0 & \frac{1}{2 \tan{\frac{\theta}{2}}} & \frac{t' + b'}{2} & 0 \\
+  \frac{1}{2a \tan{\frac{\theta}{2}}} & 0 & 0 & 0 \\
+  0 & \frac{1}{2 \tan{\frac{\theta}{2}}} & 0 & 0 \\
   0 & 0 & -\frac{f}{f - n} & -\frac{fn}{f - n} \\
   0 & 0 & -1 & 0
 \end{bmatrix}
