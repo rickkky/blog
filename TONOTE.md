@@ -4,7 +4,7 @@
 - JS private fields
   - closure
   - weak map
-- Z-Buffering
-- Matrix inverse
-- Normal transformation
-- Matrix naming
+- Rotation
+  - Euler Angle, (yaw, pitch, roll)
+  - Quaternion
+
