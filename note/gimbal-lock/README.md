@@ -79,3 +79,5 @@ R_z(\psi) R_y(\theta) R_x(\phi)
 ```
 
 上面的变换矩阵可以看出，对于 $R_z R_y R_x$ 所表示的旋转变换，当 $\theta = \frac{\pi}{2}$ 时计算出的变换矩阵表示绕单个轴的旋转变换， $\phi$ 和 $\psi$ 最终表现的旋转效果都是绕同一个轴旋转，这种现象称为万向锁。
+
+> https://doc.babylonjs.com/features/featuresDeepDive/mesh/transforms/center_origin/rotation_conventions
