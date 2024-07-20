@@ -135,21 +135,21 @@ fn partition(nums: &mut [i32], left: usize, right: usize) -> usize {
     i
 }
 
-fn quick_sort_part(nums: &mut [i32], left: usize, right: usize) {
+fn quick_sort_partial(nums: &mut [i32], left: usize, right: usize) {
     if left >= right {
         return;
     }
     let pivot = partition(nums, left, right);
     if pivot > left {
-        quick_sort_part(nums, left, pivot - 1);
+        quick_sort_partial(nums, left, pivot - 1);
     }
     if pivot < right {
-        quick_sort_part(nums, pivot + 1, right);
+        quick_sort_partial(nums, pivot + 1, right);
     }
 }
 
 fn quick_sort(nums: &mut [i32]) {
-    quick_sort_part(nums, 0, nums.len() - 1);
+    quick_sort_partial(nums, 0, nums.len() - 1);
 }
 ```
 
@@ -208,21 +208,21 @@ fn partition(nums: &mut [i32], left: usize, right: usize) -> usize {
     i
 }
 
-fn quick_sort_part(nums: &mut [i32], left: usize, right: usize) {
+fn quick_sort_partial(nums: &mut [i32], left: usize, right: usize) {
     if left >= right {
         return;
     }
     let pivot = partition(nums, left, right);
     if pivot > left {
-        quick_sort_part(nums, left, pivot - 1);
+        quick_sort_partial(nums, left, pivot - 1);
     }
     if pivot < right {
-        quick_sort_part(nums, pivot + 1, right);
+        quick_sort_partial(nums, pivot + 1, right);
     }
 }
 
 fn quick_sort(nums: &mut [i32]) {
-    quick_sort_part(nums, 0, nums.len() - 1);
+    quick_sort_partial(nums, 0, nums.len() - 1);
 }
 ```
 
@@ -264,7 +264,7 @@ fn partition(nums: &mut [i32], left: usize, right: usize) -> usize {
     i
 }
 
-fn quick_sort_part(nums: &mut [i32], left: usize, right: usize) {
+fn quick_sort_partial(nums: &mut [i32], left: usize, right: usize) {
     let mut left = left;
     let mut right = right;
     while left < right {
@@ -272,12 +272,12 @@ fn quick_sort_part(nums: &mut [i32], left: usize, right: usize) {
         // Recurrsively sort the smaller part.
         if pivot - left < right - pivot {
             if pivot > left {
-                quick_sort_part(nums, left, pivot - 1);
+                quick_sort_partial(nums, left, pivot - 1);
             }
             left = pivot + 1;
         } else {
             if pivot < right {
-                quick_sort_part(nums, pivot + 1, right);
+                quick_sort_partial(nums, pivot + 1, right);
             }
             right = pivot - 1;
         }
@@ -285,9 +285,50 @@ fn quick_sort_part(nums: &mut [i32], left: usize, right: usize) {
 }
 
 fn quick_sort(nums: &mut [i32]) {
-    quick_sort_part(nums, 0, nums.len() - 1);
+    quick_sort_partial(nums, 0, nums.len() - 1);
 }
 ```
+
+## 快速选择
+
+快速选择（Quick Select）基于快速排序的思想，用于在无序数组中查找第 $k$ 小的元素。
+
+不同于快速排序，快速选择需要判断基准数的位置与 $k$ 的大小关系：
+
+- 若基准数的位置等于 $k$ ，则基准数即为第 $k$ 小的元素；
+- 若基准数的位置小于 $k$ ，则第 $k$ 小的元素在基准数的右侧，只需要对右侧子数组进行递归；
+- 若基准数的位置大于 $k$ ，则第 $k$ 小的元素在基准数的左侧，只需要对左侧子数组进行递归。
+
+```rust
+fn quick_select(nums: &mut [i32], k: usize) -> i32 {
+    let mut left = 0;
+    let mut right = nums.len() - 1;
+    while left < right {
+        let pivot = partition(nums, left, right);
+        if pivot == k {
+            return nums[k];
+        } else if pivot < k {
+            left = pivot + 1;
+        } else {
+            right = pivot - 1;
+        }
+    }
+    nums[k]
+}
+```
+
+理想情况下，快速选择需要进行的基本操作数量为：
+
+```math
+n + \frac{n}{2} + \frac{n}{4} + \cdots
+=
+n (1 + \frac{1}{2} + \frac{1}{4} + \cdots)
+\lt
+2n
+```
+
+- 时间复杂度为 $O(n)$ ，最坏时间复杂度为 $O(n^2)$ 。
+- 空间复杂度为 $O(\log{n})$ 。
 
 # 归并排序
 
@@ -327,18 +368,18 @@ fn merge(nums: &mut [i32], left: usize, mid: usize, right: usize) {
     }
 }
 
-fn merge_sort_part(nums: &mut [i32], left: usize, right: usize) {
+fn merge_sort_partial(nums: &mut [i32], left: usize, right: usize) {
     if left >= right {
         return;
     }
     let mid = left + (right - left) / 2;
-    merge_sort_part(nums, left, mid);
-    merge_sort_part(nums, mid + 1, right);
+    merge_sort_partial(nums, left, mid);
+    merge_sort_partial(nums, mid + 1, right);
     merge(nums, left, mid, right);
 }
 
 fn merge_sort(nums: &mut [i32]) {
-    merge_sort_part(nums, 0, nums.len() - 1);
+    merge_sort_partial(nums, 0, nums.len() - 1);
 }
 ```
 
