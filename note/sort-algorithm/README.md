@@ -140,12 +140,8 @@ fn quick_sort_partial(nums: &mut [i32], left: usize, right: usize) {
         return;
     }
     let pivot = partition(nums, left, right);
-    if pivot > left {
-        quick_sort_partial(nums, left, pivot - 1);
-    }
-    if pivot < right {
-        quick_sort_partial(nums, pivot + 1, right);
-    }
+    quick_sort_partial(nums, left, usize::max(pivot, 1) - 1);
+    quick_sort_partial(nums, pivot + 1, right);
 }
 
 fn quick_sort(nums: &mut [i32]) {
@@ -213,12 +209,8 @@ fn quick_sort_partial(nums: &mut [i32], left: usize, right: usize) {
         return;
     }
     let pivot = partition(nums, left, right);
-    if pivot > left {
-        quick_sort_partial(nums, left, pivot - 1);
-    }
-    if pivot < right {
-        quick_sort_partial(nums, pivot + 1, right);
-    }
+    quick_sort_partial(nums, left, usize::max(pivot, 1) - 1);
+    quick_sort_partial(nums, pivot + 1, right);
 }
 
 fn quick_sort(nums: &mut [i32]) {
@@ -271,14 +263,10 @@ fn quick_sort_partial(nums: &mut [i32], left: usize, right: usize) {
         let pivot = partition(nums, left, right);
         // Recurrsively sort the smaller part.
         if pivot - left < right - pivot {
-            if pivot > left {
-                quick_sort_partial(nums, left, pivot - 1);
-            }
+            quick_sort_partial(nums, left, usize::max(pivot, 1) - 1);
             left = pivot + 1;
         } else {
-            if pivot < right {
-                quick_sort_partial(nums, pivot + 1, right);
-            }
+            quick_sort_partial(nums, pivot + 1, right);
             right = pivot - 1;
         }
     }
@@ -298,6 +286,28 @@ fn quick_sort(nums: &mut [i32]) {
 - 若基准数的位置等于 $k$ ，则基准数即为第 $k$ 小的元素；
 - 若基准数的位置小于 $k$ ，则第 $k$ 小的元素在基准数的右侧，只需要对右侧子数组进行递归；
 - 若基准数的位置大于 $k$ ，则第 $k$ 小的元素在基准数的左侧，只需要对左侧子数组进行递归。
+
+```rust
+fn quick_select_partial(nums: &mut [i32], left: usize, right: usize, k: usize) -> i32 {
+    if left >= right {
+        return nums[k];
+    }
+    let pivot = partition(nums, left, right);
+    if pivot == k {
+        return nums[k];
+    } else if pivot < k {
+        return quick_select_partial(nums, pivot + 1, right, k);
+    } else {
+        return quick_select_partial(nums, left, pivot - 1, k);
+    }
+}
+
+fn quick_select(nums: &mut [i32], k: usize) -> i32 {
+    quick_select_partial(nums, 0, nums.len() - 1, k)
+}
+```
+
+尾递归优化版本：
 
 ```rust
 fn quick_select(nums: &mut [i32], k: usize) -> i32 {
@@ -327,8 +337,10 @@ n (1 + \frac{1}{2} + \frac{1}{4} + \cdots)
 2n
 ```
 
+因此，理想情况下，快速选择的时间复杂度为 $O(n)$ 。
+
 - 时间复杂度为 $O(n)$ ，最坏时间复杂度为 $O(n^2)$ 。
-- 空间复杂度为 $O(\log{n})$ 。
+- 空间复杂度为 $O(\log{n})$ ，尾递归优化版本的空间复杂度为 $O(1)$ 。
 
 # 归并排序
 
