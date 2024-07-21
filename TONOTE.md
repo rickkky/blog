@@ -7,4 +7,5 @@
 - Rotation
   - Euler Angle, (yaw, pitch, roll)
   - Quaternion
-
+  - Rodrigues' rotation formula
+  - Reference: babylon docs
