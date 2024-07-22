@@ -407,6 +407,39 @@ fn merge_sort(nums: &mut [i32]) {
 - 划分阶段：可以使用迭代的方式替代递归，省去递归使用的栈帧空间。
 - 合并阶段：由于链表的增删操作仅需改变引用（指针）即可，因此将两个有序链表合并为一个有序链表的过程无需创建额外的链表。
 
+# 堆排序
+
+```rust
+fn sift_down(nums: &mut [i32], mut i: usize, n: usize) {
+    loop {
+        let l = 2 * i + 1;
+        let r = 2 * i + 2;
+        let mut j = i;
+        if l < n && nums[l] > nums[j] {
+            j = l;
+        }
+        if r < n && nums[r] > nums[j] {
+            j = r;
+        }
+        if j == i {
+            break;
+        }
+        nums.swap(i, j);
+        i = j;
+    }
+}
+
+fn heap_sort(nums: &mut [i32]) {
+    for i in (0..nums.len() / 2).rev() {
+        sift_down(nums, i, nums.len());
+    }
+    for i in (1..nums.len()).rev() {
+        nums.swap(0, i);
+        sift_down(nums, 0, i);
+    }
+}
+```
+
 > 参考：
 >
 > - [Hello 算法 - 排序](https://www.hello-algo.com/chapter_sorting/)
