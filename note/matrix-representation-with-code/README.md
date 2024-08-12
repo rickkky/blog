@@ -1,3 +1,9 @@
+---
+id: matrix-representation-with-code
+
+title: 矩阵的代码表示
+---
+
 以行主序（row-major order）表示的三维矩阵为例：
 
 ```math
