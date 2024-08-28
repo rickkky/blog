@@ -25,7 +25,7 @@ title: Interview Vue
 
 - 创建一个 `Dep` 实例作为当前 `observer` 的 `dep` 属性的值。
 - 给对象添加 `__ob__` 属性，值为当前 `observer`。
-- 判断对象是否为数组，如果是数组，调用 `observeArray` 方法，将数组中的每一项转换为响应式对象。
+- 判断对象是否为数组，如果是数组，调用 `observeArray` 方法，将数组中的每一项转换为响应式对象，并修改数组的原型链使得可能修改原数组的方法也能触发响应式更新。
 - 否则遍历对象的属性，对每个属性调用 `defineReactive` 方法。
 
 ### defineReactive
@@ -170,3 +170,23 @@ title: Interview Vue
 - `watcher.update` 将当前 `watcher` 添加到更新队列中，等待下一个 `tick` 执行。
 - 在下一个 `tick` 中，会执行 `flushSchedulerQueue` 函数，执行更新队列中所有的 `watcher`。
 - `watcher.run` 会调用 `watcher.get` 方法获取新的值，对于组件渲染，即调用 `updateComponent` 方法重新渲染并更新组件。
+
+### nextTick
+
+`nextTick` 会依次尝试使用 `Promise.then`、`MutationObserver`、`setImmediate` 和 `setTimeout(..., 0)` 来实现异步执行。
+
+### 检测变化的注意事项
+
+无法检测变化的情况：
+
+- 对象属性的添加或删除。
+- 通过索引设置数组项或修改数组长度。
+
+除了以上情况外，Vue 不允许动态添加根级响应式属性，必须在初始化时声明。
+
+### 计算属性原理
+
+- 创建 `computed` 属性对应的 `watcher` 时，会将 `lazy` 属性设置为 `true`，表示只在访问该属性时才会计算值。
+- 当计算属性的依赖更新时，其 `watcher` 不会被添加到更新队列中，而是标记 `dirty` 属性为 `true`，表示计算属性的值需要重新计算。
+- 当访问计算属性时，会判断其 `dirty` 属性，如果为 `true`，则调用 `watcher.evaluate` 方法计算新的值。该方法会调用 `watcher.get` 方法并重置 `dirty` 属性。
+- 收集依赖时，会调用 `watcher.depend` 方法。该方法会遍历计算属性依赖的所有 `dep`，分别调用 `dep.depend` 方法。
