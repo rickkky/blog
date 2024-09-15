@@ -41,6 +41,18 @@ Object.prototype.toString.call(/abc/); // "[object RegExp]"
 - `Number.isNaN`、`isNaN`
 - `Number.isFinite`、`isFinite`
 
+# 数据比较
+
+`==` 在进行比较时会先进行类型转换，再进行比较。简单概括为：
+
+- 如果两个操作数类型相同，直接进行比较。
+- 如果一个操作数是 `null`，另一个是 `undefined`，返回 `true`。
+- 如果一个操作数是数字，另一个是字符串，将字符串转换为数字再进行比较。
+- 如果一个操作数是布尔值，则将其转换为数字再进行比较。
+- 如果一个操作数是对象，另一个是数字、字符串或布尔值，将对象转换为原始值再进行比较。
+
+`===` 在进行比较时不会进行类型转换，如果类型不同直接返回 `false`。
+
 # 原型链
 
 - 原型链是 JavaScript 实现继承的一种机制。
@@ -106,6 +118,34 @@ Object.prototype.toString.call(/abc/); // "[object RegExp]"
 - `Symbol` 是 ES6 新增的一种基本数据类型，表示独一无二的值。
 - `Symbol` 值可以作为对象属性名，避免属性名冲突。或者作为常量、枚举值使用。
 - `Symbol` 作为属性名时，不会被 `for...in`、`Object.keys`、`Object.getOwnPropertyNames` 等方法遍历，但可以通过 `Object.getOwnPropertySymbols` 方法获取。
+
+# 可迭代对象
+
+- 可迭代（Iterable）对象是实现了 `Symbol.iterator` 方法的对象，该方法返回一个迭代器（Iterator）对象。
+- 迭代器对象是一个具有 `next` 方法的对象，每次调用 `next` 方法都会返回一个包含 `value` 和 `done` 属性的对象，`value` 表示当前值，`done` 表示是否迭代结束。
+- 可迭代对象可以通过 `for...of` 循环进行遍历；也可以使用展开运算符 `...` 将可迭代对象转换为数组。
+- 常见的可迭代对象有数组、字符串、Map、Set、Generator 等。
+- 优点：相较于数组提供了更高层次的抽象；为不同的数据结构提供了统一的遍历接口，而不用暴露其内部细节。
+
+## 异步迭代
+
+- 实现 `Symbol.asyncIterator` 接口。
+- `next` 方法返回一个 Promise 对象。
+- 借助 `for await...of` 进行异步迭代。
+
+# Generator
+
+- Generator 函数的语法为 `function*`，返回一个 Generator 对象，该对象实现了迭代器接口，可以通过 `next` 方法进行迭代。
+- `yield` 关键字可以暂停函数执行，返回一个值，下次调用 `next` 方法时从上次暂停的位置继续执行。
+- `next` 方法可以接受一个参数，作为上一个 `yield` 表达式的返回值。
+- `yield*` 可以将 Generator 委托给另一个 Generator。
+- `generator.throw` 方法可以向上一个 `yield` 抛出一个错误。
+- `generator.return` 方法可以结束 Generator 的执行。
+
+## 异步 Generator
+
+- `async function*` 定义异步 Generator 函数，函数内部可以使用 `await` 关键字来等待异步操作的结果。
+- 借助 `for await...of` 迭代异步 Generator。
 
 # 函数柯里化
 
