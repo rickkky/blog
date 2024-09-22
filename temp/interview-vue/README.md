@@ -4,6 +4,14 @@ id: interview-vue
 title: Interview Vue
 ---
 
+# Vue3 与 Vue2 的区别
+
+- 响应式系统：Vue3 使用 `Proxy` 代替 `Object.defineProperty` 实现响应式，提供更好的性能和更多的特性。
+- Composition API：Vue3 提供了 Composition API，使得组件逻辑更加清晰，复用性更高。
+- 编译优化：在编译阶段，Vue2 通过标记静态根节点优化 Diff 过程；Vue3 则标记和提升所有的静态节点，Diff 过程中只需要对比动态节点。
+
+...
+
 # 响应式原理
 
 ## Vue2 响应式原理
