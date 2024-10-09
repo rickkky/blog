@@ -138,6 +138,25 @@ Object.prototype.toString.call(/abc/); // "[object RegExp]"
 - `async function*` 定义异步 Generator 函数，函数内部可以使用 `await` 关键字来等待异步操作的结果。
 - 借助 `for await...of` 迭代异步 Generator。
 
+# 模块化
+
+## IIFE
+
+- 使用立即执行函数可以创建一个独立的作用域，避免变量污染。
+
+## CommonJS
+
+- Node.js 默认的模块化方案。
+- 通过 `require` 导入模块，通过 `module.exports` 导出模块。
+- 模块加载是同步的，即在加载和解析模块时会阻塞代码执行。
+- 同一个模块被多次导入时，只有第一次会加载并运行模块，之后会将模块缓存起来，再次导入时直接返回缓存的模块。
+
+## ESM
+
+- ES6 新增的模块化方案。
+- 在浏览器中可以给 `script` 标签添加 `type="module"` 属性来告诉浏览器该脚本应该按照 ES 模块规范来解析和执行。
+- 通过 `import` 导入模块，通过 `export` 导出模块。
+
 # 函数柯里化
 
 - 柯里化是指将接受多个参数的函数转换为接受一个参数的函数，并返回接受余下参数的函数。
