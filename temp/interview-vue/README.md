@@ -6,9 +6,12 @@ title: Interview Vue
 
 # Vue3 与 Vue2 的区别
 
-- 响应式系统：Vue3 使用 `Proxy` 代替 `Object.defineProperty` 实现响应式，提供更好的性能和更多的特性。
-- Composition API：Vue3 提供了 Composition API，使得组件逻辑更加清晰，复用性更高。
-- 编译优化：在编译阶段，Vue2 通过标记静态根节点优化 Diff 过程；Vue3 则标记和提升所有的静态节点，Diff 过程中只需要对比动态节点。
+- 响应式系统。Vue3 使用 `Proxy` 代替 `Object.defineProperty` 实现响应式，提供更好的性能和更多的特性。
+- Composition API。Vue3 提供了 Composition API，使得组件逻辑更加清晰，复用性更高。
+- 编译优化。在编译阶段，Vue2 通过标记静态根节点优化 Diff 过程；Vue3 则标记和提升所有的静态节点，Diff 过程中只需要对比动态节点。
+- 生命周期。
+- Fragments。Vue3 的 `template` 模板支持多个根标签。
+-
 
 ...
 
@@ -241,3 +244,17 @@ Vue3 使用 `Proxy` 实现响应式。`Proxy` 对象表示一个目标对象的�
 
 - 避免将很大的对象转换为响应式对象。
 - 避免节点跨层级移动。
+
+# Vue Router
+
+## Hash 模式
+
+- Hash 模式基于 `location.hash` 实现。`location.hash` 表示 URL 中的 `#` 号及其后面的 URL 片段标识符。
+- 改变 `location.hash` 不会导致页面刷新，可以通过 `hashchange` 事件监听 `location.hash` 的变化。
+
+## History 模式
+
+- History 模式基于 HTML5 History API 中的 `history.pushState` 和 `history.replaceState` 实现。这两个方法可以在不刷新页面的情况下操作浏览器历史记录。
+- 浏览器前进、后退时会触发 `popstate` 事件。监听 `popstate` 事件，在回调中获取当前访问路径，根据路径渲染对应的组件。
+- `history.pushState` 和 `history.replaceState` 不会触发 `popstate` 事件。
+- History 模式需要服务器端配置支持，以避免刷新页面时出现 404 错误。
