@@ -74,6 +74,34 @@ title: Interview Performance
 
 - FP 表示首次渲染时间。
 
+### First Contentful Paint
+
+- FCP 表示网页内容任何部分在屏幕上呈现的时间。
+- 这里的内容包括文本、图像、SVG、非白色的 Canvas 等。
+- 衡量标准：小于 1 秒 - 良好；大于 3 秒 - 不佳。
+
+### Largest Contentful Paint
+
+- LCP 用于标记网页内容中最大内容元素在屏幕上呈现的时间。
+- 这里的元素包括 `<img>`、`<video>`、`<svg>` 中包含的 `<image>`、包含背景图片的元素、包含文本或其他内联文本元素的块级元素等。
+- 页面上最大的元素可能会发生变化，浏览器会在最大的内容元素发生变化时发送一个类型为 `largest-contentful-paint` 的 `PerformanceEntry`。
+- 衡量标准：小于 2.5 秒 - 良好；大于 4 秒 - 不佳。
+
+### First Input Delay
+
+- FID 用于衡量用户首次与页面交互到浏览器实际能够开始处理事件处理程序以响应该交互的时间。
+- 衡量标准：小于 100 毫秒 - 良好；大于 300 毫秒 - 不佳。
+
+### Time to Interactive
+
+- TTI 用于衡量页面变得可交互的时间。
+
+### Total Blocking Time
+
+### Cumulative Layout Shift
+
+### Interaction to Next Paint
+
 ## 性能优化
 
 ### 渲染方案
