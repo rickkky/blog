@@ -172,7 +172,7 @@ fn quick_sort(nums: &mut [i32]) {
 
 ```rust
 fn median_three(nums: &[i32], left: usize, right: usize) -> usize {
-    let mid = left + (right - left) / 2;
+    let mid = left + right / 2;
     let l = nums[left];
     let m = nums[mid];
     let r = nums[right];
@@ -224,7 +224,7 @@ fn quick_sort(nums: &mut [i32]) {
 
 ```rust
 fn median_three(nums: &[i32], left: usize, right: usize) -> usize {
-    let mid = left + (right - left) / 2;
+    let mid = left + right / 2;
     let l = nums[left];
     let m = nums[mid];
     let r = nums[right];
@@ -384,7 +384,7 @@ fn merge_sort_partial(nums: &mut [i32], left: usize, right: usize) {
     if left >= right {
         return;
     }
-    let mid = left + (right - left) / 2;
+    let mid = left + right / 2;
     merge_sort_partial(nums, left, mid);
     merge_sort_partial(nums, mid + 1, right);
     merge(nums, left, mid, right);
